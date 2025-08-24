@@ -72,7 +72,7 @@ class _ResultScreenState extends State<ResultScreen>
   void _startAnimationSequence() {
     _winnersAnimationController.forward();
     
-    Future.delayed(const Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 200), () {
       if (mounted) {
         setState(() {
           _showRoleReveal = true;
@@ -81,7 +81,7 @@ class _ResultScreenState extends State<ResultScreen>
       }
     });
     
-    Future.delayed(const Duration(milliseconds: 3500), () {
+    Future.delayed(const Duration(milliseconds: 350), () {
       if (mounted) {
         setState(() {
           _showWordReveal = true;

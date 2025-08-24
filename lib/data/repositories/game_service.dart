@@ -111,23 +111,29 @@ class GameService {
     if (_currentSession == null) return null;
 
     final activePlayers = _currentSession!.activePlayers;
-    final activeCivilians = activePlayers.where((p) => p.role == PlayerRole.civilian).toList();
-    final activeUndercovers = activePlayers.where((p) => p.role == PlayerRole.undercover).toList();
-    final mrWhitePlayers = activePlayers.where((p) => p.role == PlayerRole.mrWhite);
-    final mrWhite = mrWhitePlayers.isNotEmpty ? mrWhitePlayers.first : null;
-
-    if (activeUndercovers.isEmpty && mrWhite == null) {
+    final activeCivilians = activePlayers.where((p) => p.role == PlayerRole.civilian).length;
+    final activeUndercovers = activePlayers.where((p) => p.role == PlayerRole.undercover).length;
+    final activeMrWhites = activePlayers.where((p) => p.role == PlayerRole.mrWhite).length;
+    
+    // Civilians win when ALL undercover agents are eliminated
+    // (this includes both regular undercovers and Mr. White)
+    if (activeUndercovers == 0 && activeMrWhites == 0) {
       return GameResult.civiliansWin;
     }
-
-    if (activeUndercovers.isNotEmpty && activeCivilians.length <= 1) {
+    
+    // Undercovers win when their count is >= civilians count
+    // (undercovers include both regular undercovers and Mr. White)
+    final totalUndercovers = activeUndercovers + activeMrWhites;
+    if (totalUndercovers >= activeCivilians) {
       return GameResult.undercoversWin;
     }
-
-    if (activePlayers.length <= 2) {
+    
+    // Draw condition - very rare scenario
+    if (activePlayers.length <= 2 && totalUndercovers == activeCivilians) {
       return GameResult.draw;
     }
-
+    
+    // Game continues
     return null;
   }
 

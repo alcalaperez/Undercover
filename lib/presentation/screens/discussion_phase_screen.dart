@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
 import '../../data/models/game_session.dart';
+import '../../data/models/player.dart';
 import '../../data/repositories/game_service.dart';
 import '../widgets/buttons/primary_button.dart';
 
@@ -183,13 +184,8 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Opacity(
-                          opacity: isActive ? 1.0 : 0.5,
-                          child: const Icon(
-                            Icons.person,
-                            size: 16,
-                          ),
-                        ),
+                        // Role indicator icon
+                        _getPlayerRoleIcon(player),
                         const SizedBox(width: 8),
                         Text(
                           player.name,
@@ -203,6 +199,10 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                                 : TextDecoration.lineThrough,
                           ),
                         ),
+                        if (!isActive) ...[
+                          const SizedBox(width: 6),
+                          _getEliminatedPlayerRoleIndicator(player),
+                        ],
                       ],
                     ),
                   );
@@ -212,6 +212,41 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _getPlayerRoleIcon(Player player) {
+    return Icon(
+      Icons.person,
+      size: 16,
+      color: !player.isEliminated ? Colors.green : Colors.grey,
+    );
+  }
+
+  Widget _getEliminatedPlayerRoleIndicator(Player player) {
+    // Define colors for each role
+    Color roleColor = Colors.grey;
+    IconData roleIcon = Icons.help_outline;
+    
+    switch (player.role) {
+      case PlayerRole.civilian:
+        roleColor = Colors.blue;
+        roleIcon = Icons.people;
+        break;
+      case PlayerRole.undercover:
+        roleColor = Colors.red;
+        roleIcon = Icons.person_search;
+        break;
+      case PlayerRole.mrWhite:
+        roleColor = Colors.purple;
+        roleIcon = Icons.psychology;
+        break;
+    }
+    
+    return Icon(
+      roleIcon,
+      size: 14,
+      color: roleColor,
     );
   }
 }

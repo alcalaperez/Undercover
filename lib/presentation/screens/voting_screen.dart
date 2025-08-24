@@ -320,8 +320,8 @@ class _VotingScreenState extends State<VotingScreen>
       gameService.endGame(GameResult.mrWhiteWins);
       _showMrWhiteResult(true, guess);
     } else {
-      // Civilians win
-      gameService.endGame(GameResult.civiliansWin);
+      // Mr. White guessed incorrectly - game continues
+      // Civilians don't automatically win, the game proceeds normally
       _showMrWhiteResult(false, guess);
     }
   }
@@ -349,37 +349,44 @@ class _VotingScreenState extends State<VotingScreen>
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Actual word: "${wordPair?.civilianWord ?? 'Unknown'}"',
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              isCorrect 
-                ? 'Mr. White wins the game!' 
-                : 'Civilians win the game!',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isCorrect ? AppColors.mrWhite : AppColors.civilian,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            )
           ],
         ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              _navigateToResults();
+              if (isCorrect) {
+                // Mr. White wins - go to results
+                _navigateToResults();
+              } else {
+                // Mr. White guessed incorrectly - continue game
+                _continueGameAfterMrWhite();
+              }
             },
-            child: const Text('See Results'),
+            child: const Text('Continue'),
           ),
         ],
       ),
     );
+  }
+
+  void _continueGameAfterMrWhite() {
+    // After Mr. White guesses incorrectly, continue the game normally
+    final gameService = GameService.instance;
+    
+    // Check win condition after Mr. White elimination
+    final winResult = gameService.calculateWinCondition();
+    if (winResult != null) {
+      // Game ends
+      gameService.endGame(winResult);
+      _navigateToResults();
+    } else {
+      // Continue game - clear votes and return to description phase
+      gameService.clearVotes();
+      gameService.nextPhase(GamePhase.description);
+      _navigateToGameplay();
+    }
   }
 
   void _navigateToResults() {
