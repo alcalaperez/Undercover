@@ -6,7 +6,7 @@ import 'core/utils/localization_service.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/screens/main_menu_screen.dart';
 import 'presentation/screens/enhanced_game_setup_screen.dart';
-import 'presentation/screens/role_reveal_screen.dart';
+import 'presentation/screens/card_selection_screen.dart';
 import 'presentation/screens/description_phase_screen.dart';
 import 'presentation/screens/discussion_phase_screen.dart';
 import 'presentation/screens/voting_screen.dart';
@@ -62,7 +62,7 @@ class UndercoverApp extends StatelessWidget {
         
       case Routes.roleReveal:
         final args = settings.arguments as Map<String, dynamic>;
-        return _createRoute(RoleRevealScreen(
+        return _createRoute(CardSelectionScreen(
           players: args['players'] as List<Player>,
           settings: args['settings'] as GameSettings,
         ));

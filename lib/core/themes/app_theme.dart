@@ -26,6 +26,7 @@ class AppColors {
   static const Color undercover = Color(0xFFEF4444);
   static const Color mrWhite = Color(0xFF8B5CF6);
   static const Color eliminated = Color(0xFF6B7280);
+  static const Color cardBack = Color(0xFF4F46E5);
 }
 
 class AppTextStyles {

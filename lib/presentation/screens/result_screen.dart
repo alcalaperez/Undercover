@@ -207,13 +207,6 @@ Play Undercover Game!
     );
   }
 
-  void _newGame() {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      Routes.gameSetup,
-      (route) => route.isFirst,
-    );
-  }
-
   Widget _buildWinnerAnnouncement() {
     return AnimatedBuilder(
       animation: _winnersAnimation,
@@ -632,13 +625,6 @@ Play Undercover Game!
               child: PrimaryButton(
                 text: 'Play Again',
                 onPressed: _playAgain,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: PrimaryButton(
-                text: 'New Game',
-                onPressed: _newGame,
               ),
             ),
           ],

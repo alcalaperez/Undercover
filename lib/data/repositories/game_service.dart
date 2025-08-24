@@ -16,6 +16,7 @@ class GameService {
   final Random _random = Random();
 
   GameSession? _currentSession;
+  List<PlayerRole>? _shuffledRoles;
 
   GameSession? get currentSession => _currentSession;
 
@@ -61,6 +62,104 @@ class GameService {
     assignWords(_currentSession!.players, wordPair);
 
     return _currentSession!;
+  }
+
+  // New method for card selection system
+  Future<GameSession> initializeGameWithoutRoles(
+    List<Player> playerList,
+    GameSettings settings,
+  ) async {
+    if (playerList.length < 4 || playerList.length > 20) {
+      throw Exception('Game requires 4-20 players');
+    }
+
+    await _wordRepository.initialize();
+
+    final sessionId = _generateSessionId();
+    
+    final wordPair = _wordRepository.getRandomWordPair(
+      categories: settings.selectedCategories,
+      difficulty: settings.wordDifficulty,
+    );
+
+    if (wordPair == null) {
+      throw Exception('No word pairs available for selected criteria');
+    }
+
+    _currentSession = GameSession(
+      sessionId: sessionId,
+      players: List.from(playerList),
+      currentWordPair: wordPair,
+      currentPhase: GamePhase.setup,
+      currentRound: 1,
+      currentPlayerIndex: 0,
+      settings: settings,
+      createdAt: DateTime.now(),
+    );
+
+    // Generate shuffled roles but don't assign them yet
+    _generateShuffledRoles(playerList.length, settings.undercoverCount, settings.includeMrWhite ? 1 : 0);
+
+    return _currentSession!;
+  }
+
+  void _generateShuffledRoles(int playerCount, int undercoverCount, int mrWhiteCount) {
+    if (undercoverCount + mrWhiteCount >= playerCount) {
+      throw Exception('Too many non-civilian roles for player count');
+    }
+
+    final List<PlayerRole> roles = [];
+    
+    for (int i = 0; i < undercoverCount; i++) {
+      roles.add(PlayerRole.undercover);
+    }
+    
+    for (int i = 0; i < mrWhiteCount; i++) {
+      roles.add(PlayerRole.mrWhite);
+    }
+    
+    while (roles.length < playerCount) {
+      roles.add(PlayerRole.civilian);
+    }
+
+    roles.shuffle(_random);
+    _shuffledRoles = roles;
+  }
+
+  List<PlayerRole> getShuffledRoles() {
+    return _shuffledRoles ?? [];
+  }
+
+  void assignPlayerRole(String playerId, int cardIndex) {
+    if (_currentSession == null || _shuffledRoles == null) {
+      throw Exception('Game not properly initialized for card selection');
+    }
+
+    if (cardIndex < 0 || cardIndex >= _shuffledRoles!.length) {
+      throw Exception('Invalid card index');
+    }
+
+    final playerIndex = _currentSession!.players.indexWhere((p) => p.id == playerId);
+    if (playerIndex == -1) {
+      throw Exception('Player not found');
+    }
+
+    final assignedRole = _shuffledRoles![cardIndex];
+    _currentSession!.players[playerIndex] = _currentSession!.players[playerIndex].copyWith(role: assignedRole);
+  }
+
+  void finalizeGameSetup() {
+    if (_currentSession == null) {
+      throw Exception('No active game session');
+    }
+
+    // Apply Mr. White first draw setting BEFORE assigning words
+    if (_currentSession!.settings.mrWhiteFirstDraw && _currentSession!.settings.includeMrWhite) {
+      _preventMrWhiteFirst();
+    }
+    
+    // Assign words to all players based on their roles
+    assignWords(_currentSession!.players, _currentSession!.currentWordPair!);
   }
 
   Future<void> assignRoles(int playerCount, int undercoverCount, int mrWhiteCount) async {
@@ -278,6 +377,7 @@ class GameService {
 
   void resetSession() {
     _currentSession = null;
+    _shuffledRoles = null;
   }
 
   String _generateSessionId() {
