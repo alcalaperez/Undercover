@@ -1,0 +1,340 @@
+{
+  "word_pairs": [
+    {
+      "civilianWord": "Dog",
+      "undercoverWord": "Cat",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Lion",
+      "undercoverWord": "Tiger",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Elephant",
+      "undercoverWord": "Rhino",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Shark",
+      "undercoverWord": "Whale",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Eagle",
+      "undercoverWord": "Hawk",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Penguin",
+      "undercoverWord": "Ostrich",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Butterfly",
+      "undercoverWord": "Moth",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Dolphin",
+      "undercoverWord": "Porpoise",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Pizza",
+      "undercoverWord": "Burger",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Apple",
+      "undercoverWord": "Orange",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Coffee",
+      "undercoverWord": "Tea",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Ice cream",
+      "undercoverWord": "Frozen yogurt",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Sushi",
+      "undercoverWord": "Sashimi",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Pasta",
+      "undercoverWord": "Noodles",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Croissant",
+      "undercoverWord": "Bagel",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Espresso",
+      "undercoverWord": "Cappuccino",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Chair",
+      "undercoverWord": "Stool",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Book",
+      "undercoverWord": "Magazine",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Phone",
+      "undercoverWord": "Tablet",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Umbrella",
+      "undercoverWord": "Parasol",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Guitar",
+      "undercoverWord": "Violin",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Clock",
+      "undercoverWord": "Watch",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Telescope",
+      "undercoverWord": "Microscope",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Chandelier",
+      "undercoverWord": "Lamp",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Beach",
+      "undercoverWord": "Desert",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "School",
+      "undercoverWord": "University",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Hospital",
+      "undercoverWord": "Clinic",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Mountain",
+      "undercoverWord": "Hill",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Library",
+      "undercoverWord": "Bookstore",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Museum",
+      "undercoverWord": "Gallery",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Observatory",
+      "undercoverWord": "Planetarium",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Monastery",
+      "undercoverWord": "Temple",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Swimming",
+      "undercoverWord": "Diving",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Reading",
+      "undercoverWord": "Writing",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Dancing",
+      "undercoverWord": "Singing",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Jogging",
+      "undercoverWord": "Running",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Painting",
+      "undercoverWord": "Drawing",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Hiking",
+      "undercoverWord": "Climbing",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Meditation",
+      "undercoverWord": "Yoga",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Archery",
+      "undercoverWord": "Darts",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Titanic",
+      "undercoverWord": "Avatar",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Spider-Man",
+      "undercoverWord": "Batman",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Frozen",
+      "undercoverWord": "Moana",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "The Lion King",
+      "undercoverWord": "Finding Nemo",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Inception",
+      "undercoverWord": "Interstellar",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "The Matrix",
+      "undercoverWord": "Blade Runner",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Casablanca",
+      "undercoverWord": "Citizen Kane",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Pulp Fiction",
+      "undercoverWord": "Reservoir Dogs",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Doctor",
+      "undercoverWord": "Nurse",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Teacher",
+      "undercoverWord": "Professor",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Chef",
+      "undercoverWord": "Baker",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Pilot",
+      "undercoverWord": "Captain",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Lawyer",
+      "undercoverWord": "Judge",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Engineer",
+      "undercoverWord": "Architect",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Archaeologist",
+      "undercoverWord": "Anthropologist",
+      "category": "Professions",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Sommelier",
+      "undercoverWord": "Barista",
+      "category": "Professions",
+      "difficulty": "hard"
+    }
+  ]
+}
