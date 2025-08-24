@@ -62,8 +62,8 @@ class _MainMenuScreenState extends State<MainMenuScreen>
     Navigator.of(context).pushNamed(Routes.gameSetup);
   }
 
-  void _navigateToHowToPlay() {
-    Navigator.of(context).pushNamed(Routes.howToPlay);
+  void _navigateToTutorial() {
+    Navigator.of(context).pushNamed(Routes.tutorial);
   }
 
   void _navigateToSettings() {
@@ -175,9 +175,9 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                               SizedBox(
                                 width: double.infinity,
                                 child: SecondaryButton(
-                                  text: 'How to Play',
-                                  icon: Icons.help_outline,
-                                  onPressed: _navigateToHowToPlay,
+                                  text: 'Tutorial',
+                                  icon: Icons.school,
+                                  onPressed: _navigateToTutorial,
                                 ),
                               ),
 

@@ -460,6 +460,20 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                     },
                     contentPadding: EdgeInsets.zero,
                   ),
+                  
+                  // Mr. White First Draw Setting
+                  if (_settings.includeMrWhite)
+                    SwitchListTile(
+                      title: const Text('Prevent Mr. White First'),
+                      subtitle: const Text('Mr. White will not go first in word reveal'),
+                      value: _settings.mrWhiteFirstDraw,
+                      onChanged: (value) {
+                        setState(() {
+                          _settings = _settings.copyWith(mrWhiteFirstDraw: value);
+                        });
+                      },
+                      contentPadding: EdgeInsets.zero,
+                    ),
                 ],
               ),
             ),

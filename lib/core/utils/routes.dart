@@ -9,4 +9,7 @@ class Routes {
   static const String result = '/result';
   static const String settings = '/settings';
   static const String howToPlay = '/how-to-play';
+  static const String tutorial = '/tutorial';
+  static const String rulesReference = '/rules-reference';
+  static const String strategyTips = '/strategy-tips';
 }

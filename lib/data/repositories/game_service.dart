@@ -52,6 +52,12 @@ class GameService {
     );
 
     await assignRoles(playerList.length, settings.undercoverCount, settings.includeMrWhite ? 1 : 0);
+    
+    // Apply Mr. White first draw setting BEFORE assigning words
+    if (settings.mrWhiteFirstDraw && settings.includeMrWhite) {
+      _preventMrWhiteFirst();
+    }
+    
     assignWords(_currentSession!.players, wordPair);
 
     return _currentSession!;
@@ -277,6 +283,35 @@ class GameService {
   String _generateSessionId() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     return List.generate(8, (index) => chars[_random.nextInt(chars.length)]).join();
+  }
+
+  void _preventMrWhiteFirst() {
+    if (_currentSession == null) return;
+    
+    final players = _currentSession!.players;
+    if (players.isEmpty) return;
+    
+    // Check if the first player is Mr. White
+    if (players[0].role != PlayerRole.mrWhite) return;
+    
+    // Find all non-Mr. White players to choose from randomly
+    final availableIndices = <int>[];
+    for (int i = 1; i < players.length; i++) {
+      if (players[i].role != PlayerRole.mrWhite) {
+        availableIndices.add(i);
+      }
+    }
+    
+    // If we found players to swap roles with, choose one randomly
+    if (availableIndices.isNotEmpty) {
+      final randomIndex = availableIndices[_random.nextInt(availableIndices.length)];
+      final firstPlayerRole = players[0].role;
+      final swapPlayerRole = players[randomIndex].role;
+      
+      // Swap only the roles, keeping players in their original positions
+      players[0] = players[0].copyWith(role: swapPlayerRole);
+      players[randomIndex] = players[randomIndex].copyWith(role: firstPlayerRole);
+    }
   }
 
   GameSession? copySession() {

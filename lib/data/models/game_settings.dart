@@ -8,6 +8,7 @@ class GameSettings {
   final List<String> selectedCategories;
   final bool soundEffectsEnabled;
   final bool vibrationEnabled;
+  final bool mrWhiteFirstDraw;
 
   GameSettings({
     required this.undercoverCount,
@@ -17,6 +18,7 @@ class GameSettings {
     required this.selectedCategories,
     this.soundEffectsEnabled = true,
     this.vibrationEnabled = true,
+    this.mrWhiteFirstDraw = true,
   });
 
   Map<String, dynamic> toJson() {
@@ -28,6 +30,7 @@ class GameSettings {
       'selectedCategories': selectedCategories,
       'soundEffectsEnabled': soundEffectsEnabled,
       'vibrationEnabled': vibrationEnabled,
+      'mrWhiteFirstDraw': mrWhiteFirstDraw,
     };
   }
 
@@ -43,6 +46,7 @@ class GameSettings {
       selectedCategories: List<String>.from(json['selectedCategories']),
       soundEffectsEnabled: json['soundEffectsEnabled'] ?? true,
       vibrationEnabled: json['vibrationEnabled'] ?? true,
+      mrWhiteFirstDraw: json['mrWhiteFirstDraw'] ?? true,
     );
   }
 
@@ -54,6 +58,7 @@ class GameSettings {
     List<String>? selectedCategories,
     bool? soundEffectsEnabled,
     bool? vibrationEnabled,
+    bool? mrWhiteFirstDraw,
   }) {
     return GameSettings(
       undercoverCount: undercoverCount ?? this.undercoverCount,
@@ -63,6 +68,7 @@ class GameSettings {
       selectedCategories: selectedCategories ?? this.selectedCategories,
       soundEffectsEnabled: soundEffectsEnabled ?? this.soundEffectsEnabled,
       vibrationEnabled: vibrationEnabled ?? this.vibrationEnabled,
+      mrWhiteFirstDraw: mrWhiteFirstDraw ?? this.mrWhiteFirstDraw,
     );
   }
 
@@ -75,6 +81,7 @@ class GameSettings {
       selectedCategories: ['Animals', 'Food', 'Objects'],
       soundEffectsEnabled: true,
       vibrationEnabled: true,
+      mrWhiteFirstDraw: true,
     );
   }
 

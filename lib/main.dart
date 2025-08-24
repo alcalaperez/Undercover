@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/themes/app_theme.dart';
 import 'core/utils/routes.dart';
+import 'core/utils/localization_service.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/screens/main_menu_screen.dart';
 import 'presentation/screens/enhanced_game_setup_screen.dart';
@@ -11,6 +13,9 @@ import 'presentation/screens/voting_screen.dart';
 import 'presentation/screens/result_screen.dart';
 import 'presentation/screens/how_to_play_screen.dart';
 import 'presentation/screens/settings_screen.dart';
+import 'presentation/screens/tutorial_screen.dart';
+import 'presentation/screens/rules_reference_screen.dart';
+import 'presentation/screens/strategy_tips_screen.dart';
 import 'data/models/player.dart';
 import 'data/models/game_settings.dart';
 import 'data/models/game_session.dart';
@@ -30,6 +35,15 @@ class UndercoverApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: LocalizationService.supportedLanguages.map(
+        (languageCode) => Locale(languageCode),
+      ).toList(),
       initialRoute: Routes.splash,
       onGenerateRoute: _generateRoute,
     );
@@ -74,6 +88,15 @@ class UndercoverApp extends StatelessWidget {
         
       case Routes.settings:
         return _createRoute(const SettingsScreen());
+        
+      case Routes.tutorial:
+        return _createRoute(const TutorialScreen());
+        
+      case Routes.rulesReference:
+        return _createRoute(const RulesReferenceScreen());
+        
+      case Routes.strategyTips:
+        return _createRoute(const StrategyTipsScreen());
         
       default:
         return _createRoute(const MainMenuScreen());
