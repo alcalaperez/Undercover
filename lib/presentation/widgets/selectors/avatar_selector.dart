@@ -74,10 +74,10 @@ class AvatarSelector extends StatelessWidget {
                   duration: const Duration(milliseconds: 200),
                   decoration: BoxDecoration(
                     color: isUnavailable
-                        ? Colors.grey.withOpacity(0.3)
+                        ? Colors.grey.withValues(alpha: 0.3)
                         : isSelected
                             ? avatarColor
-                            : avatarColor.withOpacity(0.2),
+                            : avatarColor.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: isSelected
@@ -106,7 +106,7 @@ class AvatarSelector extends StatelessWidget {
                           Positioned.fill(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.7),
+                                color: Colors.grey.withValues(alpha: 0.7),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: const Icon(
@@ -132,7 +132,7 @@ class AvatarSelector extends StatelessWidget {
           style: AppTextStyles.caption.copyWith(
             color: isSelectedAvatarUnavailable 
                 ? AppColors.danger
-                : Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
       ],
@@ -151,5 +151,24 @@ class AvatarSelector extends StatelessWidget {
 
   static Color getAvatarColor(int index) {
     return _avatarColors[index % _avatarColors.length];
+  }
+
+  static Widget getAvatarIcon(int index, {double size = 24, Color? color}) {
+    if (index >= 0 && index < _avatarEmojis.length) {
+      return Text(
+        _avatarEmojis[index],
+        style: TextStyle(
+          fontSize: size,
+          color: color,
+        ),
+      );
+    }
+    return Text(
+      _avatarEmojis[0],
+      style: TextStyle(
+        fontSize: size,
+        color: color,
+      ),
+    );
   }
 }

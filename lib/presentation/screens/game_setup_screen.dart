@@ -290,6 +290,7 @@ class _GameSetupScreenState extends State<GameSetupScreen>
                             }
                           },
                           dense: true,
+                          toggleable: true,
                         ),
                       );
                     }).toList(),
@@ -343,6 +344,7 @@ class _GameSetupScreenState extends State<GameSetupScreen>
                           }
                         },
                         dense: true,
+                        toggleable: true,
                       );
                     }).toList(),
                   ),
@@ -379,6 +381,7 @@ class _GameSetupScreenState extends State<GameSetupScreen>
                           }
                         },
                         dense: true,
+                        toggleable: true,
                       );
                     }).toList(),
                   ),

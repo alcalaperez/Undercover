@@ -164,9 +164,10 @@ class GameService {
       throw Exception('Eliminated player cannot vote');
     }
 
-    if (voterId == targetId) {
-      throw Exception('Player cannot vote for themselves');
-    }
+    // Removed restriction: players can now vote for themselves if they wish
+    // if (voterId == targetId) {
+    //   throw Exception('Player cannot vote for themselves');
+    // }
 
     _currentSession!.players[targetIndex] = _currentSession!.players[targetIndex]
         .copyWith(votesReceived: _currentSession!.players[targetIndex].votesReceived + 1);

@@ -8,6 +8,7 @@ import '../../data/models/game_session.dart';
 import '../../data/models/player.dart';
 import '../../data/repositories/game_service.dart';
 import '../widgets/buttons/primary_button.dart';
+import '../widgets/selectors/avatar_selector.dart';
 
 class VotingScreen extends StatefulWidget {
   final GameSession gameSession;
@@ -26,12 +27,9 @@ class _VotingScreenState extends State<VotingScreen>
   late GameSession _currentSession;
   Player? _selectedPlayer;
   bool _isVotingComplete = false;
-  bool _showingResults = false;
   
   late AnimationController _selectionController;
-  late AnimationController _resultController;
   late Animation<double> _selectionAnimation;
-  late Animation<double> _resultAnimation;
   
   final List<String> _voteHistory = [];
 
@@ -46,7 +44,6 @@ class _VotingScreenState extends State<VotingScreen>
   @override
   void dispose() {
     _selectionController.dispose();
-    _resultController.dispose();
     super.dispose();
   }
 
@@ -56,18 +53,8 @@ class _VotingScreenState extends State<VotingScreen>
       vsync: this,
     );
     
-    _resultController = AnimationController(
-      duration: const Duration(milliseconds: 800),
-      vsync: this,
-    );
-    
     _selectionAnimation = CurvedAnimation(
       parent: _selectionController,
-      curve: Curves.easeInOut,
-    );
-    
-    _resultAnimation = CurvedAnimation(
-      parent: _resultController,
       curve: Curves.easeInOut,
     );
   }
@@ -96,85 +83,14 @@ class _VotingScreenState extends State<VotingScreen>
   void _confirmVote() {
     if (_selectedPlayer == null) return;
     
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => _buildVoteConfirmationDialog(),
-    );
+    // For collective voting, we don't need individual confirmation
+    // Just submit the vote directly
+    _submitVote();
   }
 
   Widget _buildVoteConfirmationDialog() {
-    return AlertDialog(
-      title: const Text('Confirm Vote'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(
-            Icons.how_to_vote,
-            size: 48,
-            color: AppColors.primary,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Are you sure you want to vote to eliminate:',
-            style: Theme.of(context).textTheme.bodyMedium,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: AppColors.danger.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.danger),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  _selectedPlayer!.avatarIndex,
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  _selectedPlayer!.name,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.danger,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'This action cannot be undone!',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.danger,
-              fontStyle: FontStyle.italic,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            _submitVote();
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.danger,
-            foregroundColor: Colors.white,
-          ),
-          child: const Text('Confirm Vote'),
-        ),
-      ],
-    );
+    // Not used in collective voting system
+    return Container();
   }
 
   void _submitVote() {
@@ -182,50 +98,107 @@ class _VotingScreenState extends State<VotingScreen>
     
     try {
       final gameService = GameService.instance;
-      // For now, use first active player as voter - in full implementation,
-      // this would be the current voting player in turn-based voting
-      final activePlayer = _currentSession.activePlayers.first;
-      gameService.addVote(activePlayer.id, _selectedPlayer!.id);
+      // In collective voting, we simulate a group decision by having all active players vote
+      // for the selected player. This is a simplification - in a real implementation,
+      // you might have a different mechanism.
+      for (final player in _currentSession.activePlayers) {
+        // Skip eliminated players
+        if (player.isEliminated) continue;
+        
+        // Each active player votes for the selected player
+        gameService.addVote(player.id, _selectedPlayer!.id);
+      }
       
       setState(() {
         _isVotingComplete = true;
       });
       
-      _addToHistory('Vote cast for ${_selectedPlayer!.name}');
+      _addToHistory('Group decision: ${_selectedPlayer!.name} selected for elimination');
       HapticFeedback.heavyImpact();
       
       // Show voting complete message
-      _showVotingCompleteDialog();
-      
+      _proceedToResults();
     } catch (e) {
       _showErrorDialog(e.toString());
     }
   }
 
-  void _showVotingCompleteDialog() {
+  void _proceedToResults() {
+    _addToHistory('Proceeding to vote results');
+    _processVotesAndElimination();
+  }
+
+  void _processVotesAndElimination() {
+    final gameService = GameService.instance;
+    
+    // Get the most voted player
+    final mostVoted = gameService.getMostVotedPlayer();
+    
+    if (mostVoted != null) {
+      // Eliminate the most voted player
+      gameService.eliminatePlayer(mostVoted.id);
+      _addToHistory('${mostVoted.name} has been eliminated');
+      
+      // Show the eliminated player's role before proceeding
+      _showEliminatedPlayerRole(mostVoted);
+    } else {
+      // No clear winner - tie or no votes
+      _addToHistory('Vote was inconclusive - continuing game');
+      gameService.clearVotes();
+      gameService.nextPhase(GamePhase.description);
+      _navigateToGameplay();
+    }
+  }
+
+  void _showEliminatedPlayerRole(Player eliminatedPlayer) {
+    // Get role name for display
+    String roleName = '';
+    Color roleColor = AppColors.civilian;
+    
+    switch (eliminatedPlayer.role) {
+      case PlayerRole.civilian:
+        roleName = 'Civilian';
+        roleColor = AppColors.civilian;
+        break;
+      case PlayerRole.undercover:
+        roleName = 'Undercover Agent';
+        roleColor = AppColors.undercover;
+        break;
+      case PlayerRole.mrWhite:
+        roleName = 'Mr. White';
+        roleColor = AppColors.mrWhite;
+        break;
+    }
+    
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Vote Submitted'),
+        title: Text('${eliminatedPlayer.name} was...'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.check_circle,
+            Icon(
+              eliminatedPlayer.role == PlayerRole.civilian 
+                ? Icons.people
+                : eliminatedPlayer.role == PlayerRole.undercover 
+                  ? Icons.person_search
+                  : Icons.psychology,
               size: 48,
-              color: AppColors.success,
+              color: roleColor,
             ),
             const SizedBox(height: 16),
             Text(
-              'Your vote has been recorded.',
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.center,
+              roleName,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: roleColor,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
-              'Pass the phone to the next player or proceed to see results.',
-              style: Theme.of(context).textTheme.bodySmall,
+              'has been eliminated from the game',
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
           ],
@@ -234,7 +207,173 @@ class _VotingScreenState extends State<VotingScreen>
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              _proceedToResults();
+              // Check for Mr. White special case
+              if (eliminatedPlayer.role == PlayerRole.mrWhite) {
+                _handleMrWhiteElimination(eliminatedPlayer);
+              } else {
+                // Check win condition after elimination
+                final gameService = GameService.instance;
+                final winResult = gameService.calculateWinCondition();
+                if (winResult != null) {
+                  // Game ends
+                  gameService.endGame(winResult);
+                  _navigateToResults();
+                } else {
+                  // Continue game - clear votes and return to description phase
+                  gameService.clearVotes();
+                  gameService.nextPhase(GamePhase.description);
+                  _navigateToGameplay();
+                }
+              }
+            },
+            child: const Text('Continue'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleMrWhiteElimination(Player mrWhite) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text('Mr. White Eliminated!'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.psychology,
+              size: 48,
+              color: AppColors.mrWhite,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '${mrWhite.name} was Mr. White! They now have a chance to guess the civilian word and win the game.',
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _showMrWhiteGuessDialog();
+            },
+            child: const Text('Let Mr. White Guess'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showMrWhiteGuessDialog() {
+    final TextEditingController guessController = TextEditingController();
+    
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('Mr. White\'s Final Guess'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Mr. White, what is the civilian word?',
+              style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: guessController,
+              decoration: const InputDecoration(
+                hintText: 'Enter your guess...',
+                border: OutlineInputBorder(),
+              ),
+              textCapitalization: TextCapitalization.words,
+              autofocus: true,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              final guess = guessController.text.trim();
+              if (guess.isNotEmpty) {
+                Navigator.of(context).pop();
+                _processMrWhiteGuess(guess);
+              }
+            },
+            child: const Text('Submit Guess'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _processMrWhiteGuess(String guess) {
+    final gameService = GameService.instance;
+    final isCorrect = gameService.handleMrWhiteGuess(guess);
+    
+    if (isCorrect) {
+      // Mr. White wins
+      gameService.endGame(GameResult.mrWhiteWins);
+      _showMrWhiteResult(true, guess);
+    } else {
+      // Civilians win
+      gameService.endGame(GameResult.civiliansWin);
+      _showMrWhiteResult(false, guess);
+    }
+  }
+
+  void _showMrWhiteResult(bool isCorrect, String guess) {
+    final wordPair = GameService.instance.currentSession?.currentWordPair;
+    
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(isCorrect ? 'Correct!' : 'Wrong!'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isCorrect ? Icons.check_circle : Icons.cancel,
+              size: 64,
+              color: isCorrect ? AppColors.success : AppColors.danger,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Guess: "$guess"',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Actual word: "${wordPair?.civilianWord ?? 'Unknown'}"',
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              isCorrect 
+                ? 'Mr. White wins the game!' 
+                : 'Civilians win the game!',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: isCorrect ? AppColors.mrWhite : AppColors.civilian,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _navigateToResults();
             },
             child: const Text('See Results'),
           ),
@@ -243,20 +382,20 @@ class _VotingScreenState extends State<VotingScreen>
     );
   }
 
-  void _proceedToResults() {
-    setState(() {
-      _showingResults = true;
-    });
-    
-    _resultController.forward();
-    _addToHistory('Proceeding to vote results');
-    
-    // For now, navigate to result screen - in full implementation,
-    // this would show the vote counting and elimination process
-    Future.delayed(const Duration(seconds: 2), () {
+  void _navigateToResults() {
+    Future.delayed(const Duration(milliseconds: 200), () {
       Navigator.of(context).pushReplacementNamed(
         Routes.result,
-        arguments: _currentSession,
+        arguments: GameService.instance.currentSession,
+      );
+    });
+  }
+
+  void _navigateToGameplay() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      Navigator.of(context).pushReplacementNamed(
+        Routes.description,
+        arguments: GameService.instance.currentSession,
       );
     });
   }
@@ -281,7 +420,7 @@ class _VotingScreenState extends State<VotingScreen>
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
       decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.1),
+        color: AppColors.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: AppColors.primary,
@@ -293,7 +432,7 @@ class _VotingScreenState extends State<VotingScreen>
           Row(
             children: [
               const Icon(
-                Icons.how_to_vote,
+                Icons.group,
                 color: AppColors.primary,
                 size: 24,
               ),
@@ -303,14 +442,14 @@ class _VotingScreenState extends State<VotingScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Voting Phase',
+                      'Vote the intrusors!',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'Select who you want to eliminate',
+                      'As a group, decide who to eliminate',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.grey.shade600,
                       ),
@@ -319,43 +458,7 @@ class _VotingScreenState extends State<VotingScreen>
                 ),
               ),
             ],
-          ),
-          if (_selectedPlayer != null) ...[
-            const SizedBox(height: 16),
-            AnimatedBuilder(
-              animation: _selectionAnimation,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: 1.0 + (_selectionAnimation.value * 0.05),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.primary),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          _selectedPlayer!.avatarIndex,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Selected: ${_selectedPlayer!.name}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
+          )
         ],
       ),
     );
@@ -386,7 +489,7 @@ class _VotingScreenState extends State<VotingScreen>
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
               color: isSelected 
-                  ? AppColors.primary.withOpacity(0.1)
+                  ? AppColors.primary.withValues(alpha: 0.1)
                   : Colors.white,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
@@ -398,8 +501,8 @@ class _VotingScreenState extends State<VotingScreen>
               boxShadow: [
                 BoxShadow(
                   color: isSelected 
-                      ? AppColors.primary.withOpacity(0.3)
-                      : Colors.black.withOpacity(0.1),
+                      ? AppColors.primary.withValues(alpha: 0.3)
+                      : Colors.black.withValues(alpha: 0.1),
                   blurRadius: isSelected ? 8 : 4,
                   offset: const Offset(0, 2),
                 ),
@@ -418,12 +521,10 @@ class _VotingScreenState extends State<VotingScreen>
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child: Text(
-                      player.avatarIndex,
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: isSelected ? AppColors.primary : Colors.black87,
-                      ),
+                    child: AvatarSelector.getAvatarIcon(
+                      int.tryParse(player.avatarIndex) ?? 0,
+                      size: 24,
+                      //color: isSelected ? AppColors.primary : Colors.black87,
                     ),
                   ),
                 ),
@@ -452,52 +553,11 @@ class _VotingScreenState extends State<VotingScreen>
     );
   }
 
-  Widget _buildResultsView() {
-    return AnimatedBuilder(
-      animation: _resultAnimation,
-      builder: (context, child) {
-        return Opacity(
-          opacity: _resultAnimation.value,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 24),
-              Text(
-                'Counting Votes...',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Please wait while we tally the results',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey.shade600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (_showingResults) {
-      return Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: _buildResultsView(),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Voting'),
+        title: const Text('Collective Decision'),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -523,7 +583,7 @@ class _VotingScreenState extends State<VotingScreen>
                   child: Column(
                     children: [
                       Text(
-                        'Who do you think is the Undercover or Mr. White?',
+                        'As a group, discuss and decide who should be eliminated',
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -540,8 +600,8 @@ class _VotingScreenState extends State<VotingScreen>
                 width: double.infinity,
                 child: PrimaryButton(
                   text: _selectedPlayer == null 
-                      ? 'Select a Player to Vote'
-                      : 'Vote to Eliminate ${_selectedPlayer!.name}',
+                      ? 'Select a Player for Elimination'
+                      : 'Eliminate ${_selectedPlayer!.name}',
                   onPressed: _selectedPlayer == null ? null : _confirmVote,
                 ),
               ),

@@ -5,7 +5,8 @@ import 'presentation/screens/splash_screen.dart';
 import 'presentation/screens/main_menu_screen.dart';
 import 'presentation/screens/enhanced_game_setup_screen.dart';
 import 'presentation/screens/role_reveal_screen.dart';
-import 'presentation/screens/game_play_screen.dart';
+import 'presentation/screens/description_phase_screen.dart';
+import 'presentation/screens/discussion_phase_screen.dart';
 import 'presentation/screens/voting_screen.dart';
 import 'presentation/screens/result_screen.dart';
 import 'presentation/screens/how_to_play_screen.dart';
@@ -52,16 +53,21 @@ class UndercoverApp extends StatelessWidget {
           settings: args['settings'] as GameSettings,
         ));
         
-      case Routes.gamePlay:
+      case Routes.description:
         final gameSession = settings.arguments as GameSession;
-        return _createRoute(GamePlayScreen(gameSession: gameSession));
+        return _createRoute(DescriptionPhaseScreen(gameSession: gameSession));
+        
+      case Routes.discussion:
+        final gameSession = settings.arguments as GameSession;
+        return _createRoute(DiscussionPhaseScreen(gameSession: gameSession));
         
       case Routes.voting:
         final gameSession = settings.arguments as GameSession;
         return _createRoute(VotingScreen(gameSession: gameSession));
         
       case Routes.result:
-        return _createRoute(const ResultScreen());
+        final gameSession = settings.arguments as GameSession;
+        return _createRoute(ResultScreen(gameSession: gameSession));
         
       case Routes.howToPlay:
         return _createRoute(const HowToPlayScreen());

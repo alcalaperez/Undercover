@@ -201,7 +201,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
     gameService.nextPhase(GamePhase.description);
     
     Navigator.of(context).pushReplacementNamed(
-      Routes.gamePlay,
+      Routes.description,
       arguments: gameService.currentSession,
     );
   }
