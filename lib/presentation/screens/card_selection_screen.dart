@@ -81,7 +81,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
       // Create shuffled card indices for all players
       _availableCardIndices = List.generate(widget.players.length, (index) => index);
       _availableCardIndices.shuffle();
-      
+
       setState(() {
         _isGameInitialized = true;
       });
@@ -110,6 +110,20 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
     final gameService = GameService.instance;
     final currentPlayer = widget.players[_currentPlayerIndex];
     
+    // Check if this is the first player and Mr. White first draw prevention is enabled
+    if (_currentPlayerIndex == 0 && 
+        gameService.currentSession?.settings.mrWhiteFirstDraw == true &&
+        gameService.currentSession?.settings.includeMrWhite == true) {
+      
+      final selectedRole = gameService.getShuffledRoles()[_selectedCardIndex!];
+      
+      if (selectedRole == PlayerRole.mrWhite) {
+        // First player selected Mr. White and prevention is enabled - reshuffle!
+        _handleMrWhiteFirstDrawPrevention();
+        return;
+      }
+    }
+    
     // Assign the role for this card selection
     gameService.assignPlayerRole(currentPlayer.id, _selectedCardIndex!);
     
@@ -119,6 +133,81 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
 
     _revealController.forward();
     HapticFeedback.heavyImpact();
+  }
+
+  void _handleMrWhiteFirstDrawPrevention() {
+    // Show dialog explaining what happened
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(
+              Icons.shuffle,
+              color: AppColors.primary,
+              size: 28,
+            ),
+            const SizedBox(width: 12),
+            const Text('Cards Reshuffled!'),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.psychology,
+              size: 64,
+              color: AppColors.mrWhite,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'You selected Mr. White, but the game settings prevent Mr. White from going first.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'The cards have been reshuffled. Please select a new card!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _reshuffleCards();
+            },
+            child: const Text('Select New Card'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _reshuffleCards() {
+    final gameService = GameService.instance;
+    
+    // Regenerate shuffled roles with Mr. White prevention
+    gameService.reshuffleRolesWithMrWhitePrevention();
+    
+    // Reset card selection state
+    setState(() {
+      _isCardSelected = false;
+      _isRoleRevealed = false;
+      _selectedCardIndex = null;
+    });
+    
+    // Reset animations
+    _cardController.reset();
+    _revealController.reset();
+    
+    HapticFeedback.lightImpact();
   }
 
   void _nextPlayer() {

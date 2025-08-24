@@ -130,6 +130,17 @@ class GameService {
     return _shuffledRoles ?? [];
   }
 
+  void reshuffleRolesWithMrWhitePrevention() {
+    if (_currentSession == null || _shuffledRoles == null) {
+      throw Exception('Game not properly initialized for reshuffling');
+    }
+    
+    // Keep reshuffling until Mr. White is not in the first position
+    do {
+      _shuffledRoles!.shuffle(_random);
+    } while (_shuffledRoles![0] == PlayerRole.mrWhite);
+  }
+
   void assignPlayerRole(String playerId, int cardIndex) {
     if (_currentSession == null || _shuffledRoles == null) {
       throw Exception('Game not properly initialized for card selection');
