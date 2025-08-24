@@ -574,51 +574,6 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
               ),
             ),
           ),
-
-          const SizedBox(height: 16),
-
-          // App Settings
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'App Settings',
-                    style: AppTextStyles.labelLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  
-                  SwitchListTile(
-                    title: const Text('Sound Effects'),
-                    subtitle: const Text('Play sounds during game'),
-                    value: _settings.soundEffectsEnabled,
-                    onChanged: (value) {
-                      setState(() {
-                        _settings = _settings.copyWith(soundEffectsEnabled: value);
-                      });
-                      PreferencesService.instance.setSoundEnabled(value);
-                    },
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  
-                  SwitchListTile(
-                    title: const Text('Vibration'),
-                    subtitle: const Text('Vibrate for important events'),
-                    value: _settings.vibrationEnabled,
-                    onChanged: (value) {
-                      setState(() {
-                        _settings = _settings.copyWith(vibrationEnabled: value);
-                      });
-                      PreferencesService.instance.setVibrationEnabled(value);
-                    },
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -641,7 +596,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
           controller: _tabController,
           tabs: const [
             Tab(icon: Icon(Icons.people), text: 'Players'),
-            Tab(icon: Icon(Icons.settings), text: 'Settings'),
+            Tab(icon: Icon(Icons.settings), text: 'Game Settings'),
           ],
         ),
       ),
