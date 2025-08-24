@@ -57,7 +57,8 @@ class UndercoverApp extends StatelessWidget {
         return _createRoute(GamePlayScreen(gameSession: gameSession));
         
       case Routes.voting:
-        return _createRoute(const VotingScreen());
+        final gameSession = settings.arguments as GameSession;
+        return _createRoute(VotingScreen(gameSession: gameSession));
         
       case Routes.result:
         return _createRoute(const ResultScreen());
