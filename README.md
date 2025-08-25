@@ -11,6 +11,12 @@
   ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
   ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
   ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+
+  <!-- CI/CD Badges -->
+  ![Build Status](https://img.shields.io/github/actions/workflow/status/alcalaperez/undercover/flutter_ci.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white)
+  ![Release](https://img.shields.io/github/v/release/alcalaperez/undercover?style=for-the-badge&logo=github&logoColor=white)
+  ![Downloads](https://img.shields.io/github/downloads/alcalaperez/undercover/total?style=for-the-badge&logo=github&logoColor=white)
+  ![License](https://img.shields.io/github/license/alcalaperez/undercover?style=for-the-badge)
 </div>
 
 ## 📱 About
