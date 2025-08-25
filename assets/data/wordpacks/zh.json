@@ -1,0 +1,340 @@
+{
+  "word_pairs": [
+    {
+      "civilianWord": "狗",
+      "undercoverWord": "猫",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "狮子",
+      "undercoverWord": "老虎",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "大象",
+      "undercoverWord": "犀牛",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "鲨鱼",
+      "undercoverWord": "鲸鱼",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "老鹰",
+      "undercoverWord": "老鹰",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "企鹅",
+      "undercoverWord": "鸵鸟",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "蝴蝶",
+      "undercoverWord": "飞蛾",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "海豚",
+      "undercoverWord": "鼠海豚",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "披萨",
+      "undercoverWord": "汉堡",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "苹果",
+      "undercoverWord": "橙子",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "咖啡",
+      "undercoverWord": "茶",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "冰淇淋",
+      "undercoverWord": "冻酸奶",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "寿司",
+      "undercoverWord": "刺身",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "意大利面",
+      "undercoverWord": "面条",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "羊角面包",
+      "undercoverWord": "百吉饼",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "浓缩咖啡",
+      "undercoverWord": "卡布奇诺",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "椅子",
+      "undercoverWord": "凳子",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "书",
+      "undercoverWord": "杂志",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "手机",
+      "undercoverWord": "平板电脑",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "雨伞",
+      "undercoverWord": "遮阳伞",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "吉他",
+      "undercoverWord": "小提琴",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "时钟",
+      "undercoverWord": "手表",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "望远镜",
+      "undercoverWord": "显微镜",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "吊灯",
+      "undercoverWord": "台灯",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "海滩",
+      "undercoverWord": "沙漠",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "学校",
+      "undercoverWord": "大学",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "医院",
+      "undercoverWord": "诊所",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "山",
+      "undercoverWord": "小山",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "图书馆",
+      "undercoverWord": "书店",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "博物馆",
+      "undercoverWord": "画廊",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "天文台",
+      "undercoverWord": "天文馆",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "修道院",
+      "undercoverWord": "寺庙",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "游泳",
+      "undercoverWord": "潜水",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "阅读",
+      "undercoverWord": "写作",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "跳舞",
+      "undercoverWord": "唱歌",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "慢跑",
+      "undercoverWord": "跑步",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "绘画",
+      "undercoverWord": "画画",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "徒步",
+      "undercoverWord": "攀爬",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "冥想",
+      "undercoverWord": "瑜伽",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "射箭",
+      "undercoverWord": "飞镖",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "泰坦尼克号",
+      "undercoverWord": "阿凡达",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "蜘蛛侠",
+      "undercoverWord": "蝙蝠侠",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "冰雪奇缘",
+      "undercoverWord": "海洋奇缘",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "狮子王",
+      "undercoverWord": "海底总动员",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "盗梦空间",
+      "undercoverWord": "星际穿越",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "黑客帝国",
+      "undercoverWord": "银翼杀手",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "卡萨布兰卡",
+      "undercoverWord": "公民凯恩",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "低俗小说",
+      "undercoverWord": "落水狗",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "医生",
+      "undercoverWord": "护士",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "老师",
+      "undercoverWord": "教授",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "厨师",
+      "undercoverWord": "面包师",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "飞行员",
+      "undercoverWord": "船长",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "律师",
+      "undercoverWord": "法官",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "工程师",
+      "undercoverWord": "建筑师",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "考古学家",
+      "undercoverWord": "人类学家",
+      "category": "Professions",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "侍酒师",
+      "undercoverWord": "咖啡师",
+      "category": "Professions",
+      "difficulty": "hard"
+    }
+  ]
+}

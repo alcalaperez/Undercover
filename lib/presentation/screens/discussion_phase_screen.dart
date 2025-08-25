@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/game_session.dart';
 import '../../data/models/player.dart';
 import '../../data/repositories/game_service.dart';
@@ -26,7 +27,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
   void initState() {
     super.initState();
     _currentSession = widget.gameSession;
-    _addToHistory('Discussion phase started');
+    _addToHistory(LocalizationService().translate('discussion_phase_started'));
   }
 
   void _addToHistory(String event) {
@@ -50,7 +51,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Undercover'),
+        title: Text(LocalizationService().translate('discussion_phase_app_bar')),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -60,7 +61,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
               Navigator.of(context).popUntil((route) => route.isFirst);
             },
             icon: const Icon(Icons.home),
-            tooltip: 'Home',
+            tooltip: LocalizationService().translate('discussion_phase_home_tooltip'),
           ),
         ],
       ),
@@ -82,7 +83,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                 ),
               ),
               PrimaryButton(
-                text: 'Call for Vote',
+                text: LocalizationService().translate('discussion_phase_call_vote'),
                 onPressed: _navigateToVoting,
               ),
             ],
@@ -105,14 +106,14 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              'Discussion Phase',
+              LocalizationService().translate('discussion_phase_title'),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              'Discuss each player\'s words to identify the undercover agents and Mr. White.',
+              LocalizationService().translate('discussion_phase_instructions'),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
@@ -128,7 +129,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Discussion Tips',
+                    LocalizationService().translate('discussion_phase_tips'),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
@@ -136,7 +137,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '• Ask each player about their word description\n• Look for inconsistencies in stories\n• Pay attention to who seems uncertain\n• Civilian words and Undercover words are related but not the same',
+                    LocalizationService().translate('discussion_phase_tip_list'),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
@@ -159,7 +160,9 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch to fill width
             children: [
               Text(
-                'Players (${_currentSession.activePlayers.length})',
+                LocalizationService().translate('discussion_phase_players_count', placeholders: {
+                  'count': _currentSession.activePlayers.length.toString()
+                }),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

@@ -46,6 +46,10 @@ class LocalizationService {
       
       _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
       _currentLanguage = languageCode;
+      
+      // Also update wordpack when language changes
+      // This will be handled by listeners - WordRepository should listen to language changes
+      
       _notifyListeners();
       return true;
     } catch (e) {

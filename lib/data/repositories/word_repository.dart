@@ -3,25 +3,53 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import '../models/word_pair.dart';
 import '../../core/constants/enums.dart';
+import '../../core/utils/localization_service.dart';
 
 class WordRepository {
   static WordRepository? _instance;
   static WordRepository get instance => _instance ??= WordRepository._();
   
-  WordRepository._();
-
-  List<WordPair> _wordPairs = [];
-  List<String> _categories = [];
-
-  Future<void> initialize() async {
-    if (_wordPairs.isEmpty) {
-      await _loadWordPairs();
+  WordRepository._() {
+    // Listen for language changes to automatically switch wordpacks
+    LocalizationService().addListener(_onLanguageChange);
+  }
+  
+  void _onLanguageChange() async {
+    final newLanguage = LocalizationService().currentLanguage;
+    if (_currentLanguage != newLanguage) {
+      try {
+        await switchLanguage(newLanguage);
+        print('WordRepository: Switched to $newLanguage wordpack');
+      } catch (e) {
+        print('WordRepository: Failed to switch to $newLanguage wordpack: $e');
+      }
     }
   }
 
-  Future<void> _loadWordPairs() async {
+  List<WordPair> _wordPairs = [];
+  List<String> _categories = [];
+  String _currentLanguage = 'en';
+
+  Future<void> initialize([String? languageCode]) async {
+    final targetLanguage = languageCode ?? LocalizationService().currentLanguage;
+    if (_wordPairs.isEmpty || _currentLanguage != targetLanguage) {
+      await _loadWordPairs(targetLanguage);
+    }
+  }
+
+  Future<void> _loadWordPairs(String languageCode) async {
     try {
-      final String jsonString = await rootBundle.loadString('assets/data/word_pairs.json');
+      // Try to load the specific language wordpack first
+      String jsonString;
+      try {
+        jsonString = await rootBundle.loadString('assets/data/wordpacks/$languageCode.json');
+      } catch (e) {
+        // Fallback to English if specific language not found
+        print('Wordpack for $languageCode not found, falling back to English');
+        jsonString = await rootBundle.loadString('assets/data/wordpacks/en.json');
+        languageCode = 'en';
+      }
+      
       final Map<String, dynamic> jsonData = json.decode(jsonString);
       
       _wordPairs = (jsonData['word_pairs'] as List)
@@ -33,8 +61,11 @@ class WordRepository {
           .toSet()
           .toList()
           ..sort();
+          
+      _currentLanguage = languageCode;
+      print('Loaded ${_wordPairs.length} word pairs for language: $languageCode');
     } catch (e) {
-      throw Exception('Failed to load word pairs: $e');
+      throw Exception('Failed to load word pairs for $languageCode: $e');
     }
   }
 
@@ -209,10 +240,46 @@ class WordRepository {
   void clearCache() {
     _wordPairs.clear();
     _categories.clear();
+    _currentLanguage = 'en';
   }
 
-  Future<void> reload() async {
+  Future<void> reload([String? languageCode]) async {
     clearCache();
-    await _loadWordPairs();
+    await _loadWordPairs(languageCode ?? LocalizationService().currentLanguage);
+  }
+  
+  /// Switch to a different language wordpack
+  Future<void> switchLanguage(String languageCode) async {
+    if (_currentLanguage != languageCode) {
+      clearCache();
+      await _loadWordPairs(languageCode);
+    }
+  }
+  
+  /// Get current language for wordpack
+  String get currentLanguage => _currentLanguage;
+  
+  /// Check if a specific language wordpack is available
+  Future<bool> isLanguageAvailable(String languageCode) async {
+    try {
+      await rootBundle.loadString('assets/data/wordpacks/$languageCode.json');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  
+  /// Get list of available language codes based on existing wordpacks
+  Future<List<String>> getAvailableLanguages() async {
+    final List<String> languages = [];
+    final supportedLanguages = LocalizationService.supportedLanguages;
+    
+    for (final lang in supportedLanguages) {
+      if (await isLanguageAvailable(lang)) {
+        languages.add(lang);
+      }
+    }
+    
+    return languages;
   }
 }

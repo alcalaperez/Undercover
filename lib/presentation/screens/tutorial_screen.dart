@@ -164,53 +164,58 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 final step = _tutorialSteps[index];
                 return Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Icon
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: step.color.withOpacity(0.1),
-                          shape: BoxShape.circle,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Icon
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: step.color.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            step.icon,
+                            size: 60,
+                            color: step.color,
+                          ),
                         ),
-                        child: Icon(
-                          step.icon,
-                          size: 60,
-                          color: step.color,
+                        const SizedBox(height: 32),
+                        
+                        // Title
+                        Text(
+                          localization.translate(step.titleKey),
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF1E293B),
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                      const SizedBox(height: 32),
-                      
-                      // Title
-                      Text(
-                        localization.translate(step.titleKey),
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF1E293B),
+                        const SizedBox(height: 16),
+                        
+                        // Description
+                        Text(
+                          localization.translate(step.descriptionKey),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: const Color(0xFF1E293B).withOpacity(0.8),
+                            height: 1.5,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      
-                      // Description
-                      Text(
-                        localization.translate(step.descriptionKey),
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: const Color(0xFF1E293B).withOpacity(0.8),
-                          height: 1.5,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 48),
-                      
-                      // Role examples for roles step
-                      if (step.titleKey == 'tutorial_roles_title')
-                        _buildRoleExamples(localization),
-                    ],
+                        const SizedBox(height: 24),
+                        
+                        // Role examples for roles step
+                        if (step.titleKey == 'tutorial_roles_title')
+                          _buildRoleExamples(localization),
+                        
+                        // Add bottom padding to ensure content doesn't get cut off
+                        const SizedBox(height: 24),
+                      ],
+                    ),
                   ),
                 );
               },

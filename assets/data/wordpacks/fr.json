@@ -1,0 +1,340 @@
+{
+  "word_pairs": [
+    {
+      "civilianWord": "Chien",
+      "undercoverWord": "Chat",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Lion",
+      "undercoverWord": "Tigre",
+      "category": "Animals",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Éléphant",
+      "undercoverWord": "Rhinocéros",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Requin",
+      "undercoverWord": "Baleine",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Aigle",
+      "undercoverWord": "Faucon",
+      "category": "Animals",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Pingouin",
+      "undercoverWord": "Autruche",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Papillon",
+      "undercoverWord": "Papillon de nuit",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Dauphin",
+      "undercoverWord": "Marsouin",
+      "category": "Animals",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Pizza",
+      "undercoverWord": "Hamburger",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Pomme",
+      "undercoverWord": "Orange",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Café",
+      "undercoverWord": "Thé",
+      "category": "Food",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Glace",
+      "undercoverWord": "Yaourt glacé",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Sushi",
+      "undercoverWord": "Sashimi",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Pâtes",
+      "undercoverWord": "Nouilles",
+      "category": "Food",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Croissant",
+      "undercoverWord": "Bagel",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Espresso",
+      "undercoverWord": "Cappuccino",
+      "category": "Food",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Chaise",
+      "undercoverWord": "Tabouret",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Livre",
+      "undercoverWord": "Magazine",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Téléphone",
+      "undercoverWord": "Tablette",
+      "category": "Objects",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Parapluie",
+      "undercoverWord": "Parasol",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Guitare",
+      "undercoverWord": "Violon",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Horloge",
+      "undercoverWord": "Montre",
+      "category": "Objects",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Télescope",
+      "undercoverWord": "Microscope",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Lustre",
+      "undercoverWord": "Lampe",
+      "category": "Objects",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Plage",
+      "undercoverWord": "Désert",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "École",
+      "undercoverWord": "Université",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Hôpital",
+      "undercoverWord": "Clinique",
+      "category": "Places",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Montagne",
+      "undercoverWord": "Colline",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Bibliothèque",
+      "undercoverWord": "Librairie",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Musée",
+      "undercoverWord": "Galerie",
+      "category": "Places",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Observatoire",
+      "undercoverWord": "Planétarium",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Monastère",
+      "undercoverWord": "Temple",
+      "category": "Places",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Nager",
+      "undercoverWord": "Plonger",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Lire",
+      "undercoverWord": "Écrire",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Danser",
+      "undercoverWord": "Chanter",
+      "category": "Activities",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Jogger",
+      "undercoverWord": "Courir",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Peindre",
+      "undercoverWord": "Dessiner",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Randonner",
+      "undercoverWord": "Grimper",
+      "category": "Activities",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Méditer",
+      "undercoverWord": "Yoga",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Tir à l'arc",
+      "undercoverWord": "Fléchettes",
+      "category": "Activities",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Titanic",
+      "undercoverWord": "Avatar",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Spider-Man",
+      "undercoverWord": "Batman",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "La Reine des Neiges",
+      "undercoverWord": "Vaiana",
+      "category": "Movies",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Le Roi Lion",
+      "undercoverWord": "Le Monde de Nemo",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Inception",
+      "undercoverWord": "Interstellar",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Matrix",
+      "undercoverWord": "Blade Runner",
+      "category": "Movies",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Casablanca",
+      "undercoverWord": "Citizen Kane",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Pulp Fiction",
+      "undercoverWord": "Reservoir Dogs",
+      "category": "Movies",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Docteur",
+      "undercoverWord": "Infirmier",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Enseignant",
+      "undercoverWord": "Professeur",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Chef",
+      "undercoverWord": "Boulanger",
+      "category": "Professions",
+      "difficulty": "easy"
+    },
+    {
+      "civilianWord": "Pilote",
+      "undercoverWord": "Capitaine",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Avocat",
+      "undercoverWord": "Juge",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Ingénieur",
+      "undercoverWord": "Architecte",
+      "category": "Professions",
+      "difficulty": "medium"
+    },
+    {
+      "civilianWord": "Archéologue",
+      "undercoverWord": "Anthropologue",
+      "category": "Professions",
+      "difficulty": "hard"
+    },
+    {
+      "civilianWord": "Sommelier",
+      "undercoverWord": "Barista",
+      "category": "Professions",
+      "difficulty": "hard"
+    }
+  ]
+}

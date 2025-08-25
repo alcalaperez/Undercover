@@ -39,7 +39,7 @@ class _VotingScreenState extends State<VotingScreen>
     super.initState();
     _currentSession = widget.gameSession;
     _setupAnimations();
-    _addToHistory('Voting phase started');
+    _addToHistory(LocalizationService().translate('voting_phase_started'));
   }
 
   @override
@@ -74,7 +74,7 @@ class _VotingScreenState extends State<VotingScreen>
       if (_selectedPlayer?.id == player.id) {
         // If clicking the same player, deselect them
         _selectedPlayer = null;
-        _addToHistory('Deselected ${player.name} (ID: ${player.id})');
+        _addToHistory(LocalizationService().translate('voting_player_deselected').replaceAll('{player}', player.name));
       } else {
         // Select the new player
         _selectedPlayer = Player(
@@ -84,7 +84,7 @@ class _VotingScreenState extends State<VotingScreen>
           role: player.role,
           isEliminated: player.isEliminated,
         );
-        _addToHistory('Selected ${player.name} (ID: ${player.id}) for voting');
+        _addToHistory(LocalizationService().translate('voting_player_selected').replaceAll('{player}', player.name));
       }
     });
     
@@ -128,7 +128,7 @@ class _VotingScreenState extends State<VotingScreen>
         _isVotingComplete = true;
       });
       
-      _addToHistory('Group decision: ${_selectedPlayer!.name} selected for elimination');
+      _addToHistory(LocalizationService().translate('voting_group_decision').replaceAll('{player}', _selectedPlayer!.name));
       HapticFeedback.heavyImpact();
       
       // Show voting complete message
@@ -139,7 +139,7 @@ class _VotingScreenState extends State<VotingScreen>
   }
 
   void _proceedToResults() {
-    _addToHistory('Proceeding to vote results');
+    _addToHistory(LocalizationService().translate('voting_proceeding_results'));
     _processVotesAndElimination();
   }
 
@@ -152,13 +152,13 @@ class _VotingScreenState extends State<VotingScreen>
     if (mostVoted != null) {
       // Eliminate the most voted player
       gameService.eliminatePlayer(mostVoted.id);
-      _addToHistory('${mostVoted.name} has been eliminated');
+      _addToHistory(LocalizationService().translate('elimination_result').replaceAll('{player}', mostVoted.name));
       
       // Show the eliminated player's role before proceeding
       _showEliminatedPlayerRole(mostVoted);
     } else {
       // No clear winner - tie or no votes
-      _addToHistory('Vote was inconclusive - continuing game');
+      _addToHistory(LocalizationService().translate('voting_tie'));
       gameService.clearVotes();
       gameService.nextPhase(GamePhase.description);
       _navigateToGameplay();
@@ -172,15 +172,15 @@ class _VotingScreenState extends State<VotingScreen>
     
     switch (eliminatedPlayer.role) {
       case PlayerRole.civilian:
-        roleName = 'Civilian';
+        roleName = LocalizationService().translate('civilian');
         roleColor = AppColors.civilian;
         break;
       case PlayerRole.undercover:
-        roleName = 'Undercover Agent';
+        roleName = LocalizationService().translate('undercover');
         roleColor = AppColors.undercover;
         break;
       case PlayerRole.mrWhite:
-        roleName = 'Mr. White';
+        roleName = LocalizationService().translate('mr_white');
         roleColor = AppColors.mrWhite;
         break;
     }
@@ -189,7 +189,7 @@ class _VotingScreenState extends State<VotingScreen>
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('${eliminatedPlayer.name} was...'),
+        title: Text(LocalizationService().translate('voting_elimination_title').replaceAll('{player}', eliminatedPlayer.name)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -212,7 +212,7 @@ class _VotingScreenState extends State<VotingScreen>
             ),
             const SizedBox(height: 8),
             Text(
-              'has been eliminated from the game',
+              LocalizationService().translate('voting_elimination_message'),
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
@@ -241,7 +241,7 @@ class _VotingScreenState extends State<VotingScreen>
                 }
               }
             },
-            child: const Text('Continue'),
+            child: Text(LocalizationService().translate('voting_continue')),
           ),
         ],
       ),
@@ -253,7 +253,7 @@ class _VotingScreenState extends State<VotingScreen>
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('Mr. White Eliminated!'),
+        title: Text(LocalizationService().translate('voting_mr_white_eliminated')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -264,7 +264,7 @@ class _VotingScreenState extends State<VotingScreen>
             ),
             const SizedBox(height: 16),
             Text(
-              '${mrWhite.name} was Mr. White! They now have a chance to guess the civilian word and win the game.',
+              LocalizationService().translate('mr_white_guess_instructions').replaceAll('{player}', mrWhite.name),
               textAlign: TextAlign.center,
             ),
           ],
@@ -275,7 +275,7 @@ class _VotingScreenState extends State<VotingScreen>
               Navigator.of(context).pop();
               _showMrWhiteGuessDialog();
             },
-            child: const Text('Let Mr. White Guess'),
+            child: Text(LocalizationService().translate('voting_mr_white_guess_button')),
           ),
         ],
       ),
@@ -289,21 +289,21 @@ class _VotingScreenState extends State<VotingScreen>
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Mr. White\'s Final Guess'),
+        title: Text(LocalizationService().translate('mr_white_guess_title')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Mr. White, what is the civilian word?',
+              LocalizationService().translate('mr_white_guess_question'),
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             TextField(
               controller: guessController,
-              decoration: const InputDecoration(
-                hintText: 'Enter your guess...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: LocalizationService().translate('enter_your_guess'),
+                border: const OutlineInputBorder(),
               ),
               textCapitalization: TextCapitalization.words,
               autofocus: true,
@@ -319,7 +319,7 @@ class _VotingScreenState extends State<VotingScreen>
                 _processMrWhiteGuess(guess);
               }
             },
-            child: const Text('Submit Guess'),
+            child: Text(LocalizationService().translate('guess_word')),
           ),
         ],
       ),
@@ -348,7 +348,7 @@ class _VotingScreenState extends State<VotingScreen>
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text(isCorrect ? 'Correct!' : 'Wrong!'),
+        title: Text(isCorrect ? LocalizationService().translate('mr_white_correct_title') : LocalizationService().translate('mr_white_incorrect_title')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -359,12 +359,12 @@ class _VotingScreenState extends State<VotingScreen>
             ),
             const SizedBox(height: 16),
             Text(
-              'Guess: "$guess"',
+              LocalizationService().translate('mr_white_guess_result').replaceAll('{guess}', guess),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
-            )
+            ),
           ],
         ),
         actions: [
@@ -379,7 +379,7 @@ class _VotingScreenState extends State<VotingScreen>
                 _continueGameAfterMrWhite();
               }
             },
-            child: const Text('Continue'),
+            child: Text(LocalizationService().translate('voting_continue')),
           ),
         ],
       ),
@@ -426,12 +426,12 @@ class _VotingScreenState extends State<VotingScreen>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Voting Error'),
+        title: Text(LocalizationService().translate('voting_error_title')),
         content: Text(error),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
+            child: Text(LocalizationService().translate('close')),
           ),
         ],
       ),
@@ -605,14 +605,6 @@ class _VotingScreenState extends State<VotingScreen>
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text(
-                        'As a group, discuss and decide who should be eliminated',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 24),
                       _buildPlayerGrid(),
                     ],
                   ),
