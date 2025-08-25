@@ -3,6 +3,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/constants/animations.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/player.dart';
 import '../../data/models/game_settings.dart';
 import '../../data/repositories/game_service.dart';
@@ -86,10 +87,11 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
   }
 
   void _showErrorDialog(String error) {
+    final localization = LocalizationService();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Game Setup Error'),
+        title: Text(localization.translate('role_reveal_setup_error')),
         content: Text(error),
         actions: [
           TextButton(
@@ -97,7 +99,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            child: const Text('Back to Setup'),
+            child: Text(localization.translate('role_reveal_back_to_setup')),
           ),
         ],
       ),
@@ -118,24 +120,26 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
   }
 
   String _getRoleText() {
+    final localization = LocalizationService();
     switch (_currentPlayer.role) {
       case PlayerRole.civilian:
-        return 'CIVILIAN';
+        return localization.translate('role_reveal_civilian');
       case PlayerRole.undercover:
-        return 'UNDERCOVER';
+        return localization.translate('role_reveal_undercover');
       case PlayerRole.mrWhite:
-        return 'MR. WHITE';
+        return localization.translate('role_reveal_mr_white');
     }
   }
 
   String _getRoleDescription() {
+    final localization = LocalizationService();
     switch (_currentPlayer.role) {
       case PlayerRole.civilian:
-        return 'You know the word. Describe it without being too obvious.';
+        return localization.translate('role_reveal_civilian_desc');
       case PlayerRole.undercover:
-        return 'You have a different word. Try to blend in with the civilians.';
+        return localization.translate('role_reveal_undercover_desc');
       case PlayerRole.mrWhite:
-        return 'You don\'t know any word. Listen carefully and try to guess what everyone is talking about.';
+        return localization.translate('role_reveal_mr_white_desc');
     }
   }
 
@@ -272,33 +276,34 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
   }
 
   Widget _buildCardFront() {
+    final localization = LocalizationService();
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.theater_comedy,
             size: 80,
             color: Colors.white,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
-            'UNDERCOVER',
-            style: TextStyle(
+            localization.translate('role_reveal_card_title'),
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
-            'Tap to reveal your word',
-            style: TextStyle(
+            localization.translate('role_reveal_tap_instruction'),
+            style: const TextStyle(
               color: Colors.white70,
               fontSize: 16,
             ),
@@ -381,6 +386,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
 
   @override
   Widget build(BuildContext context) {
+    final localization = LocalizationService();
     if (_isInitializingGame) {
       return _buildLoadingScreen();
     }
@@ -442,7 +448,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                 // Instructions
                 if (!_isCardRevealed) ...[
                   Text(
-                    'Hand the phone to ${_currentPlayer.name}',
+                    localization.translate('role_reveal_hand_phone', placeholders: {'player': _currentPlayer.name}),
                     style: AppTextStyles.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
@@ -456,13 +462,13 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                   ),
                 ] else ...[
                   Text(
-                    'Memorize your role and word',
+                    localization.translate('role_reveal_memorize'),
                     style: AppTextStyles.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Don\'t let other players see!',
+                    localization.translate('role_reveal_warning'),
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.danger,
                     ),
@@ -478,8 +484,8 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                     width: double.infinity,
                     child: PrimaryButton(
                       text: _currentPlayerIndex < widget.players.length - 1
-                          ? 'Next Player'
-                          : 'Start Game',
+                          ? localization.translate('role_reveal_next_player')
+                          : localization.translate('role_reveal_start_game'),
                       onPressed: _nextPlayer,
                     ),
                   ),

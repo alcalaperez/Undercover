@@ -138,6 +138,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
 
   void _handleMrWhiteFirstDrawPrevention() {
     // Show dialog explaining what happened
+    final localization = LocalizationService();
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -150,7 +151,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
               size: 28,
             ),
             const SizedBox(width: 12),
-            const Text('Cards Reshuffled!'),
+            Text(localization.translate('card_selection_reshuffled_title')),
           ],
         ),
         content: Column(
@@ -162,16 +163,16 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
               color: AppColors.mrWhite,
             ),
             const SizedBox(height: 16),
-            const Text(
-              'You selected Mr. White, but the game settings prevent Mr. White from going first.',
+            Text(
+              localization.translate('card_selection_mr_white_prevented'),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 12),
-            const Text(
-              'The cards have been reshuffled. Please select a new card!',
+            Text(
+              localization.translate('card_selection_reshuffled_message'),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
@@ -184,7 +185,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
               Navigator.of(context).pop();
               _reshuffleCards();
             },
-            child: const Text('Select New Card'),
+            child: Text(localization.translate('card_selection_select_new_card')),
           ),
         ],
       ),
@@ -244,10 +245,11 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   }
 
   void _showErrorDialog(String error) {
+    final localization = LocalizationService();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Setup Error'),
+        title: Text(localization.translate('card_selection_setup_error')),
         content: Text(error),
         actions: [
           TextButton(
@@ -255,7 +257,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
               Navigator.of(context).pop();
               Navigator.of(context).pop(); // Return to game setup
             },
-            child: const Text('OK'),
+            child: Text(localization.translate('card_selection_ok_button')),
           ),
         ],
       ),
@@ -372,25 +374,26 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   }
 
   Widget _buildUsedCard() {
+    final localization = LocalizationService();
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey.shade400,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.close,
               size: 32,
               color: Colors.white70,
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
-              'TAKEN',
-              style: TextStyle(
+              localization.translate('card_selection_taken_card'),
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: Colors.white70,
@@ -499,17 +502,19 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   }
 
   String _getRoleName(PlayerRole role) {
+    final localization = LocalizationService();
     switch (role) {
       case PlayerRole.civilian:
-        return 'Civilian';
+        return localization.translate('card_selection_role_civilian');
       case PlayerRole.undercover:
-        return 'Undercover\nAgent';
+        return localization.translate('card_selection_role_undercover');
       case PlayerRole.mrWhite:
-        return 'Mr. White';
+        return localization.translate('card_selection_role_mr_white');
     }
   }
 
   String _getPlayerWord(PlayerRole role) {
+    final localization = LocalizationService();
     final gameService = GameService.instance;
     final wordPair = gameService.currentSession?.currentWordPair;
     
@@ -521,13 +526,14 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
       case PlayerRole.undercover:
         return wordPair.undercoverWord;
       case PlayerRole.mrWhite:
-        return 'You don\'t know the word!';
+        return localization.translate('card_selection_mr_white_message');
     }
   }
 
   Widget _buildLargeRoleCard() {
     if (_selectedCardIndex == null) return const SizedBox();
     
+    final localization = LocalizationService();
     final role = _getCardRole(_selectedCardIndex!);
     final roleColor = _getRoleColor(_selectedCardIndex!);
     final roleIcon = _getRoleIcon(role);
@@ -576,7 +582,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                   
                   // Role name
                   Text(
-                    'You are',
+                    localization.translate('card_selection_you_are'),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.white70,
                       fontSize: 16,
@@ -615,11 +621,12 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Your word is:',
+                                localization.translate('card_selection_your_word'),
                                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                   color: Colors.white70,
                                   fontSize: 16,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 8),
                               Text(
@@ -643,7 +650,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                'You don\'t know the word!',
+                                localization.translate('card_selection_mr_white_message'),
                                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
@@ -653,7 +660,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Listen carefully and try to blend in',
+                                localization.translate('card_selection_mr_white_instruction'),
                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                   color: Colors.white70,
                                   fontSize: 12,
@@ -676,10 +683,11 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   @override
   Widget build(BuildContext context) {
     final currentPlayer = widget.players[_currentPlayerIndex];
+    final localization = LocalizationService();
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Your Role'),
+        title: Text(localization.translate('card_selection_title')),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -712,17 +720,20 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                     const SizedBox(height: 8),
                     Text(
                       _isRoleRevealed
-                          ? 'Your role has been revealed!'
+                          ? localization.translate('card_selection_role_revealed')
                           : _isCardSelected
-                              ? 'Card selected - ready to reveal'
-                              : 'Choose a card to discover your role',
+                              ? localization.translate('card_selection_card_selected')
+                              : localization.translate('card_selection_choose_card_instruction'),
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Colors.grey.shade700,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      'Player ${_currentPlayerIndex + 1} of ${widget.players.length}',
+                      localization.translate('role_reveal_player_progress', placeholders: {
+                        'current': (_currentPlayerIndex + 1).toString(),
+                        'total': widget.players.length.toString(),
+                      }),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.grey.shade600,
                       ),
@@ -749,12 +760,12 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                 width: double.infinity,
                 child: PrimaryButton(
                   text: !_isCardSelected
-                      ? 'Select a Card'
+                      ? localization.translate('card_selection_select_card_button')
                       : !_isRoleRevealed
-                          ? 'Reveal Your Word'
+                          ? localization.translate('card_selection_reveal_word_button')
                           : _currentPlayerIndex < widget.players.length - 1
-                              ? 'Pass to Next Player'
-                              : 'Start Game',
+                              ? localization.translate('card_selection_next_player_button')
+                              : localization.translate('role_reveal_start_game'),
                   onPressed: !_isCardSelected
                       ? null
                       : !_isRoleRevealed

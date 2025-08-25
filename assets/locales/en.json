@@ -349,5 +349,18 @@
   "role_reveal_memorize": "Memorize your role and word",
   "role_reveal_warning": "Don't let other players see!",
   "role_reveal_next_player": "Next Player",
-  "role_reveal_start_game": "Start Game"
+  "role_reveal_start_game": "Start Game",
+  
+  "card_selection_choose_card_instruction": "Choose a card to discover your role",
+  "card_selection_card_selected": "Card selected - ready to reveal",
+  "card_selection_role_revealed": "Your role has been revealed!",
+  "card_selection_select_card_button": "Select a Card",
+  "card_selection_reveal_word_button": "Reveal Your Word",
+  "card_selection_next_player_button": "Pass to Next Player",
+  
+  "description_phase_skip_turn_tooltip": "Skip Turn",
+  "description_phase_timer_paused": "PAUSED",
+  "description_phase_resume_tooltip": "Resume",
+  "description_phase_pause_tooltip": "Pause",
+  "description_phase_home_tooltip": "Home"
 }

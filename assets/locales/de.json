@@ -217,5 +217,37 @@
   "game_setup_enhanced_difficulty_level": "Schwierigkeitsgrad",
   "game_setup_enhanced_start_game": "Spiel starten",
   "game_setup_enhanced_name_empty_error": "Name ist erforderlich",
-  "game_setup_enhanced_name_exists_error": "Name existiert bereits"
+  "game_setup_enhanced_name_exists_error": "Name existiert bereits",
+  
+  "card_selection_title": "Wähle Deine Rolle",
+  "card_selection_reshuffled_title": "Karten neu gemischt!",
+  "card_selection_mr_white_prevented": "Du hast Herrn Weiß ausgewählt, aber die Spieleinstellungen verhindern, dass Herr Weiß zuerst dran ist.",
+  "card_selection_reshuffled_message": "Die Karten wurden neu gemischt. Bitte wähle eine neue Karte!",
+  "card_selection_select_new_card": "Neue Karte auswählen",
+  "card_selection_setup_error": "Setup Fehler",
+  "card_selection_ok_button": "OK",
+  "card_selection_unknown_card": "?",
+  "card_selection_taken_card": "GENOMMEN",
+  "role_reveal_player_progress": "Spieler {current} von {total}",
+  "role_reveal_civilian": "ZIVILIST",
+  "card_selection_role_undercover": "Undercover\\nAgent",
+  "card_selection_role_mr_white": "Herr Weiß",
+  "card_selection_no_word": "Du kennst das Wort nicht!",
+  "card_selection_you_are": "Du bist",
+  "card_selection_your_word": "Dein Wort ist:",
+  "card_selection_mr_white_message": "Du kennst das Wort nicht!",
+  "card_selection_mr_white_instruction": "Höre genau hin und versuche dich einzumischen",
+  
+  "card_selection_choose_card_instruction": "Wähle eine Karte, um deine Rolle zu entdecken",
+  "card_selection_card_selected": "Karte ausgewählt - bereit zur Enthüllung",
+  "card_selection_role_revealed": "Deine Rolle wurde enthüllt!",
+  "card_selection_select_card_button": "Karte auswählen",
+  "card_selection_reveal_word_button": "Wort enthüllen",
+  "card_selection_next_player_button": "Weiter zum nächsten Spieler",
+  
+  "description_phase_skip_turn_tooltip": "Zug überspringen",
+  "description_phase_timer_paused": "PAUSIERT",
+  "description_phase_resume_tooltip": "Fortsetzen",
+  "description_phase_pause_tooltip": "Pause",
+  "description_phase_home_tooltip": "Startseite"
 }

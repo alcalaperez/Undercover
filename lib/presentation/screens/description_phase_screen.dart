@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/game_session.dart';
 import '../../data/models/player.dart';
 import '../../data/repositories/game_service.dart';
@@ -202,9 +203,10 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
 
     @override
     Widget build(BuildContext context) {
+      final localization = LocalizationService();
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Undercover'),
+          title: Text(localization.translate('description_phase_app_bar')),
           automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -214,7 +216,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
               icon: const Icon(Icons.home),
-              tooltip: 'Home',
+              tooltip: localization.translate('description_phase_home_tooltip'),
             ),
           ],
         ),
@@ -237,6 +239,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
     }
 
     Widget _buildPhaseHeader() {
+      final localization = LocalizationService();
       return Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         decoration: BoxDecoration(
@@ -256,7 +259,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Current Turn',
+                      localization.translate('description_phase_current_turn'),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.grey.shade600,
                       ),
@@ -274,7 +277,10 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                       ],
                     ),
                     Text(
-                      'Player ${_currentPlayerTurn + 1} of ${_currentSession.activePlayers.length}',
+                      localization.translate('description_phase_player_progress', placeholders: {
+                        'current': (_currentPlayerTurn + 1).toString(),
+                        'total': _currentSession.activePlayers.length.toString(),
+                      }),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.grey.shade600,
                       ),
@@ -284,7 +290,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                 IconButton(
                   onPressed: _skipCurrentTurn,
                   icon: const Icon(Icons.skip_next),
-                  tooltip: 'Skip Turn',
+                  tooltip: localization.translate('description_phase_skip_turn_tooltip'),
                   color: Colors.blue,
                 ),
               ],
@@ -299,6 +305,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
     }
 
     Widget _buildTimer() {
+      final localization = LocalizationService();
       final minutes = _remainingSeconds ~/ 60;
       final seconds = _remainingSeconds % 60;
       final timeString = '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
@@ -335,7 +342,9 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                             _isTimerPaused ? Icons.play_arrow : Icons.pause,
                             color: _timerColorAnimation.value,
                           ),
-                          tooltip: _isTimerPaused ? 'Resume' : 'Pause',
+                          tooltip: _isTimerPaused 
+                              ? localization.translate('description_phase_resume_tooltip') 
+                              : localization.translate('description_phase_pause_tooltip'),
                         ),
                       ],
                     ],
@@ -350,7 +359,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    'PAUSED',
+                    localization.translate('description_phase_timer_paused'),
                     style: TextStyle(
                       color: Colors.orange.shade700,
                       fontWeight: FontWeight.bold,
@@ -365,6 +374,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
     }
 
     Widget _buildDescriptionInfoCard() {
+      final localization = LocalizationService();
       return Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -377,14 +387,14 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
               ),
               const SizedBox(height: 12),
               Text(
-                'Description Phase',
+                localization.translate('description_phase_title'),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                'Each player will say a word related to the assigned word without being too obvious.',
+                localization.translate('description_instructions'),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
@@ -400,7 +410,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Description Tips',
+                      localization.translate('description_phase_tips_title'),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
@@ -408,7 +418,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '• Be vague but not too cryptic\n• Don\'t directly mention your word\n• Try to relate your word to common concepts',
+                      localization.translate('description_phase_tips'),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
@@ -423,10 +433,11 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
     }
 
     Widget _buildPhaseControls() {
+      final localization = LocalizationService();
       return Column(
         children: [
           PrimaryButton(
-            text: 'Start Discussion',
+            text: localization.translate('description_phase_start_discussion'),
             onPressed: _navigateToDiscussion,
           ),
         ],

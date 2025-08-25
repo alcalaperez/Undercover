@@ -236,7 +236,7 @@
   "voting_ok_button": "OK",
 
   "card_selection_title": "Selecciona tu Rol",
-  "card_selection_reshuffled_title": "¡Cartas Barajadas!",
+  "card_selection_reshuffled_title": "¡Oh vaya!",
   "card_selection_mr_white_prevented": "Seleccionaste al Sr. Blanco, pero la configuración del juego impide que el Sr. Blanco vaya primero.",
   "card_selection_reshuffled_message": "¡Las cartas han sido barajadas! ¡Por favor selecciona una nueva carta!",
   "card_selection_select_new_card": "Seleccionar Nueva Carta",
@@ -245,7 +245,7 @@
   "card_selection_unknown_card": "?",
   "card_selection_taken_card": "TOMADA",
   "card_selection_role_civilian": "Civil",
-  "card_selection_role_undercover": "Agente\\nEncubierto",
+  "card_selection_role_undercover": "Agente\nEncubierto",
   "card_selection_role_mr_white": "Sr. Blanco",
   "card_selection_no_word": "¡No conoces la palabra!",
   "card_selection_you_are": "Eres",
@@ -280,7 +280,7 @@
   "result_main_menu": "Menú Principal",
 
   "description_phase_tips_title": "Consejos de Descripción",
-  "description_phase_tips": "• Sé vago pero no demasiado críptico\\n• No menciones directamente tu palabra\\n• Trata de relacionar tu palabra con conceptos comunes\\n• Mantén las descripciones cortas y simples",
+  "description_phase_tips": "• Sé vago pero no demasiado críptico\n• No menciones directamente tu palabra\n• Trata de relacionar tu palabra con conceptos comunes\n• Mantén las descripciones cortas y simples",
   "description_phase_start_discussion": "Iniciar Discusión",
 
   "discussion_phase_app_bar": "Encubierto",
@@ -371,5 +371,18 @@
   "game_setup_no_timer_simple": "Sin Temporizador",
   "game_setup_timer_format": "{seconds}s",
   "game_setup_word_difficulty_simple": "Dificultad de Palabras",
-  "game_setup_start_game_simple": "Comenzar Juego"
+  "game_setup_start_game_simple": "Comenzar Juego",
+  
+  "card_selection_choose_card_instruction": "Elige una carta para descubrir tu rol",
+  "card_selection_card_selected": "Carta seleccionada - lista para revelar",
+  "card_selection_role_revealed": "¡Tu rol ha sido revelado!",
+  "card_selection_select_card_button": "Seleccionar Carta",
+  "card_selection_reveal_word_button": "Revelar Tu Palabra",
+  "card_selection_next_player_button": "Pasar al Siguiente Jugador",
+  
+  "description_phase_skip_turn_tooltip": "Saltar Turno",
+  "description_phase_timer_paused": "EN PAUSA",
+  "description_phase_resume_tooltip": "Reanudar",
+  "description_phase_pause_tooltip": "Pausar",
+  "description_phase_home_tooltip": "Inicio"
 }

@@ -217,5 +217,37 @@
   "game_setup_enhanced_difficulty_level": "Niveau de difficulté",
   "game_setup_enhanced_start_game": "Commencer le jeu",
   "game_setup_enhanced_name_empty_error": "Le nom ne peut pas être vide",
-  "game_setup_enhanced_name_exists_error": "Le nom existe déjà"
+  "game_setup_enhanced_name_exists_error": "Le nom existe déjà",
+  
+  "card_selection_title": "Sélectionnez votre rôle",
+  "card_selection_reshuffled_title": "Cartes mélangées !",
+  "card_selection_mr_white_prevented": "Vous avez sélectionné M. White, mais les paramètres du jeu empêchent M. White de commencer en premier.",
+  "card_selection_reshuffled_message": "Les cartes ont été remélangées. Veuillez sélectionner une nouvelle carte !",
+  "card_selection_select_new_card": "Sélectionner une nouvelle carte",
+  "card_selection_setup_error": "Erreur de configuration",
+  "card_selection_ok_button": "OK",
+  "card_selection_unknown_card": "?",
+  "card_selection_taken_card": "PRIS",
+  "role_reveal_player_progress": "Joueur {current} sur {total}",
+  "role_reveal_civilian": "CIVIL",
+  "card_selection_role_undercover": "Agent\nUndercover",
+  "card_selection_role_mr_white": "M. White",
+  "card_selection_no_word": "Vous ne connaissez pas le mot !",
+  "card_selection_you_are": "Vous êtes",
+  "card_selection_your_word": "Votre mot est :",
+  "card_selection_mr_white_message": "Vous ne connaissez pas le mot !",
+  "card_selection_mr_white_instruction": "Écoutez attentivement et essayez de vous fondre dans la masse",
+  
+  "card_selection_choose_card_instruction": "Choisissez une carte pour découvrir votre rôle",
+  "card_selection_card_selected": "Carte sélectionnée - prête à être révélée",
+  "card_selection_role_revealed": "Votre rôle a été révélé !",
+  "card_selection_select_card_button": "Sélectionner une Carte",
+  "card_selection_reveal_word_button": "Révéler votre mot",
+  "card_selection_next_player_button": "Passer au joueur suivant",
+  
+  "description_phase_skip_turn_tooltip": "Passer le tour",
+  "description_phase_timer_paused": "EN PAUSE",
+  "description_phase_resume_tooltip": "Reprendre",
+  "description_phase_pause_tooltip": "Pause",
+  "description_phase_home_tooltip": "Accueil"
 }

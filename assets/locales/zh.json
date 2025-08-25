@@ -115,6 +115,7 @@
   
   "elimination_result": "{player}已被淘汰！",
   "player_role_revealed": "{player}是{role}",
+  "role_reveal_player_progress": "玩家 {current} / {total}",
   "voting_tie": "平票！重新投票...",
   
   "mr_white_guess_title": "白先生的最后机会！",
@@ -217,5 +218,37 @@
   "game_setup_enhanced_difficulty_level": "难度等级",
   "game_setup_enhanced_start_game": "开始游戏",
   "game_setup_enhanced_name_empty_error": "姓名不能为空",
-  "game_setup_enhanced_name_exists_error": "姓名已存在"
+  "game_setup_enhanced_name_exists_error": "姓名已存在",
+  
+  "card_selection_title": "选择你的角色",
+  "card_selection_reshuffled_title": "卡片已重新洗牌！",
+  "card_selection_mr_white_prevented": "您选择了白先生，但游戏设置阻止白先生先开始。",
+  "card_selection_reshuffled_message": "卡片已重新洗牌。请选择一张新卡片！",
+  "card_selection_select_new_card": "选择新卡片",
+  "card_selection_setup_error": "设置错误",
+  "card_selection_ok_button": "确定",
+  "card_selection_unknown_card": "？",
+  "card_selection_taken_card": "已拿取",
+  "card_selection_role_civilian": "平民",
+  "card_selection_role_undercover": "卧底
+特工",
+  "card_selection_role_mr_white": "白先生",
+  "card_selection_no_word": "你不知道这个词！",
+  "card_selection_you_are": "你是",
+  "card_selection_your_word": "你的词是：",
+  "card_selection_mr_white_message": "你不知道这个词！",
+  "card_selection_mr_white_instruction": "仔细听并尝试融入其中",
+  
+  "card_selection_choose_card_instruction": "选择一张卡片来发现你的角色",
+  "card_selection_card_selected": "卡片已选择 - 准备揭示",
+  "card_selection_role_revealed": "你的角色已被揭示！",
+  "card_selection_select_card_button": "选择卡片",
+  "card_selection_reveal_word_button": "揭示你的词汇",
+  "card_selection_next_player_button": "传递给下一个玩家",
+  
+  "description_phase_skip_turn_tooltip": "跳过回合",
+  "description_phase_timer_paused": "已暂停",
+  "description_phase_resume_tooltip": "继续",
+  "description_phase_pause_tooltip": "暂停",
+  "description_phase_home_tooltip": "首页"
 }
