@@ -52,22 +52,3 @@ jobs:
       with:
         name: android-apk
         path: build/app/outputs/flutter-apk/app-release.apk
-
-  build_ios:
-    needs: test
-    runs-on: macos-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.35.0'
-        channel: 'stable'
-    
-    - name: Get dependencies
-      run: flutter pub get
-    
-    - name: Build iOS (no signing)
-      run: flutter build ios --release --no-codesign
