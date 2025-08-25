@@ -1,0 +1,67 @@
+name: Release (Modern)
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.0'
+        channel: 'stable'
+    
+    - name: Get dependencies
+      run: flutter pub get
+    
+    - name: Run tests
+      run: flutter test
+    
+    - name: Build Android APK
+      run: flutter build apk --release
+    
+    - name: Build Android App Bundle
+      run: flutter build appbundle --release
+    
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+    
+    - name: Create Release with GitHub CLI
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create ${{ steps.get_version.outputs.VERSION }} \
+          --title "🎮 Undercover Game ${{ steps.get_version.outputs.VERSION }}" \
+          --notes "## 🎮 Undercover Game Release ${{ steps.get_version.outputs.VERSION }}
+
+        ### 📱 Downloads
+        - **APK**: Universal Android package for direct installation
+        - **AAB**: Google Play Store optimized bundle
+
+        ### 🚀 Installation Instructions
+        1. Download the \`undercover-game.apk\` file below
+        2. On your Android device, go to Settings > Security > Install from Unknown Sources (enable it)
+        3. Open the downloaded APK file to install
+        4. Launch the game and enjoy!
+
+        ### ✨ Features
+        - 🌍 5 languages supported (EN, ES, FR, DE, ZH)
+        - 🎭 Multiple game modes and player counts (4-20 players)
+        - 🎨 Material Design 3 with dark/light theme support
+        - 🔄 Offline multiplayer party game
+
+        ---
+        Built with Flutter ❤️ | [View Source](https://github.com/${{ github.repository }})" \
+          build/app/outputs/flutter-apk/app-release.apk#undercover-game.apk \
+          build/app/outputs/bundle/release/app-release.aab#undercover-game.aab
