@@ -392,9 +392,9 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
+                  color: Colors.blue.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.blue.shade200),
+                  border: Border.all(color: Colors.blue.withOpacity(0.3)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -403,13 +403,15 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                       'Description Tips',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade700,
+                        color: Colors.blue,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       '• Be vague but not too cryptic\n• Don\'t directly mention your word\n• Try to relate your word to common concepts\n• Keep descriptions short and simple',
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
                   ],
                 ),

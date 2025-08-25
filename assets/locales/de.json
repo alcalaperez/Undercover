@@ -38,7 +38,7 @@
   "tutorial_phases_description": "Jede Runde hat eine Beschreibungsphase, in der Spieler ihr Wort beschreiben, gefolgt von einer Abstimmung zur Elimination von Verdächtigen.",
   
   "tutorial_voting_title": "Abstimmung & Elimination",
-  "tutorial_voting_description": "Stimme für den Spieler, von dem du vermutest, dass er ein Undercover oder Herr Weiß ist. Der Spieler mit den meisten Stimmen wird eliminiert.",
+  "tutorial_voting_description": "Stimme für den Spieler ab, von dem du vermutest, dass er ein Undercover oder Herr Weiß ist. Der Spieler mit den meisten Stimmen wird eliminiert.",
   
   "tutorial_mr_white_title": "Herr Weiß Sonderregel",
   "tutorial_mr_white_description": "Wenn Herr Weiß eliminiert wird, kann er das Zivilistenwort erraten. Wenn richtig, gewinnt Herr Weiß!",
@@ -87,5 +87,102 @@
   "category_places": "Orte",
   "category_activities": "Aktivitäten",
   "category_movies": "Filme",
-  "category_professions": "Berufe"
+  "category_professions": "Berufe",
+  
+  "phase_word_reveal": "Wortenthüllung",
+  "phase_description": "Beschreibungsphase",
+  "phase_discussion": "Diskussion",
+  "phase_voting": "Abstimmung",
+  "phase_results": "Ergebnisse",
+  
+  "word_reveal_instructions": "Reiche das Handy an jeden Spieler weiter, damit er sein Wort privat sehen kann.",
+  "hold_to_reveal": "Halten zum Enthüllen des Wortes",
+  "i_memorized": "Ich habe es mir gemerkt",
+  "pass_to_player": "Weiter an {player}",
+  
+  "description_phase_title": "Beschreibungsphase",
+  "description_instructions": "Jeder Spieler beschreibt sein Wort in einem Satz, ohne das eigentliche Wort zu sagen.",
+  "your_turn": "Du bist dran",
+  "describe_your_word": "Beschreibe dein Wort in einem Satz",
+  "time_remaining": "Verbleibende Zeit: {time}s",
+  "next_player": "Nächster Spieler",
+  
+  "voting_phase_title": "Abstimmungsphase",
+  "voting_instructions": "Stimme für den Spieler ab, von dem du vermutest, dass er ein Undercover oder Herr Weiß ist.",
+  "select_player_to_eliminate": "Wähle einen Spieler zum Eliminieren aus:",
+  "cast_vote": "Stimme abgeben",
+  "votes_cast": "Abgegebene Stimmen: {votes}/{total}",
+  
+  "elimination_result": "{player} wurde eliminiert!",
+  "player_role_revealed": "{player} war ein(e) {role}",
+  "voting_tie": "Stimmengleichheit! Erneute Abstimmung...",
+  
+  "mr_white_guess_title": "Herr Weiß letzte Chance!",
+  "mr_white_guess_instructions": "{player} ist Herr Weiß! Er kann nun das Zivilistenwort erraten.",
+  "enter_your_guess": "Gib deine Vermutung für das Zivilistenwort ein:",
+  "guess_word": "Wort raten",
+  "mr_white_correct": "Herr Weiß hat richtig geraten und gewinnt!",
+  "mr_white_incorrect": "Herr Weiß hat falsch geraten!",
+  
+  "civilians_win": "Zivilisten gewinnen!",
+  "undercovers_win": "Undercover gewinnen!",
+  "mr_white_wins": "Herr Weiß gewinnt!",
+  
+  "game_statistics": "Spielstatistiken",
+  "rounds_played": "Gespielte Runden: {rounds}",
+  "words_used": "Wörter: {civilian} vs {undercover}",
+  "final_players": "Endgültige Spieler",
+  
+  "add_player": "Spieler hinzufügen",
+  "remove_player": "Spieler entfernen",
+  "player_name": "Spielername",
+  "enter_name": "Name eingeben",
+  "name_required": "Name ist erforderlich",
+  "name_too_long": "Name ist zu lang",
+  "name_exists": "Name existiert bereits",
+  
+  "quick_names": "Schnelle Namen",
+  "random_names": ["Alex", "Sam", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Avery", "Quinn"],
+  
+  "ready_to_start": "Bereit zum Start?",
+  "game_summary": "Spielergebnis",
+  "total_players": "Spieler insgesamt: {count}",
+  "game_settings_summary": "{undercovers} Undercover-Agent(en), Herr Weiß: {mrWhite}, Zeitlimit: {time}s",
+  "lets_play": "Los geht's!",
+  
+  "help_tooltip_player_setup": "Füge 4-20 Spieler hinzu, um das Spiel zu starten",
+  "help_tooltip_undercover_count": "Wähle, wie viele Undercover-Agenten enthalten sein sollen",
+  "help_tooltip_mr_white": "Herr Weiß erhält kein Wort und muss das Zivilistenwort erraten, wenn er eliminiert wird",
+  "help_tooltip_time_limit": "Lege fest, wie lange jeder Spieler Zeit hat, sein Wort zu beschreiben",
+  "help_tooltip_difficulty": "Höhere Schwierigkeitsgrade haben ähnlichere Wortpaare",
+  "help_tooltip_categories": "Wähle aus, welche Wortkategorien im Spiel enthalten sein sollen",
+  
+  "main_menu_title": "UNDERCOVER",
+  "main_menu_subtitle": "Das ultimative Partyspiel",
+  "main_menu_new_game": "Neues Spiel",
+  "main_menu_tutorial": "Tutorial",
+  "main_menu_settings": "Einstellungen",
+  "main_menu_version": "Version 1.0.0",
+  "main_menu_player_count": "4-20 Spieler • Offline spielbar",
+  
+  "game_setup_edit_player": "Spieler bearbeiten",
+  "game_setup_add_player": "Spieler hinzufügen",
+  "game_setup_player_count": "Spieler ({count})",
+  "game_setup_player_requirement": "4-20 Spieler erforderlich",
+  "game_setup_configuration": "Spieleinstellungen",
+  "game_setup_roles": "Rollen",
+  
+  "discussion_phase_title": "Diskussionsphase",
+  "discussion_phase_instructions": "Diskutiert die Beschreibungen jedes Spielers, um die Undercover-Agenten zu identifizieren.",
+  "discussion_phase_tips": "Diskussionstipps",
+  "discussion_phase_tip_list": "• Frage jeden Spieler nach seiner Wortbeschreibung\n• Suche nach Inkonsistenzen in Geschichten\n• Achte darauf, wer unsicher wirkt\n• Zivilistenwörter sind verwandt aber unterschiedlich\n• Undercover-Wörter sind ähnlich aber nicht gleich",
+  
+  "description_phase_app_bar": "Undercover",
+  "description_phase_current_turn": "Aktueller Zug",
+  "description_phase_player_progress": "Spieler {current} von {total}",
+  
+  "voting_elimination_title": "{player} war...",
+  "voting_elimination_message": "wurde aus dem Spiel eliminiert",
+  "voting_continue": "Weiter",
+  "voting_mr_white_eliminated": "Herr Weiß Eliminiert!"
 }

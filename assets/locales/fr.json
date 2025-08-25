@@ -47,7 +47,7 @@
   "rules_setup": "Configuration",
   "rules_setup_description": "• 4-20 joueurs\n• 1-3 Sous-Couverture\n• M. Blanc optionnel\n• Chaque joueur reçoit un rôle et un mot",
   
-  "rules_gameplay": "Gameplay",
+  "rules_gameplay": "Déroulement du Jeu",
   "rules_gameplay_description": "• Les joueurs décrivent leur mot sans le dire\n• Après les descriptions, votez pour éliminer un suspect\n• Continuez jusqu'à ce qu'une équipe gagne",
   
   "rules_winning": "Conditions de Victoire",
@@ -55,8 +55,8 @@
   
   "strategy_tips_title": "Conseils de Stratégie",
   "strategy_tip_1": "Donnez des descriptions assez spécifiques pour convaincre les autres que vous connaissez le mot, mais assez vagues pour ne pas aider les adversaires.",
-  "strategy_tip_2": "Écoutez attentivement les descriptions des autres et recherchez les incohérences ou les réponses trop vagues.",
-  "strategy_tip_3": "En tant que Sous-Couverture, essayez de vous fondre dans la masse tout en recueillant des informations sur le vrai mot.",
+  "strategy_tip_2": "Écoutez attentivement les descriptions des autres et cherchez les incohérences ou les réponses trop vagues.",
+  "strategy_tip_3": "En tant que Sous-Couverture, essayez de vous fondre parmi les autres tout en rassemblant des informations sur le vrai mot.",
   "strategy_tip_4": "M. Blanc devrait rester silencieux et laisser les autres révéler des informations, puis faire des suppositions éclairées.",
   "strategy_tip_5": "Les civils devraient travailler ensemble pour identifier les comportements suspects et coordonner les éliminations.",
   
@@ -102,13 +102,13 @@
   
   "description_phase_title": "Phase de Description",
   "description_instructions": "Chaque joueur décrit son mot en une phrase sans dire le mot réel.",
-  "your_turn": "Votre Tour",
+  "your_turn": "À Votre Tour",
   "describe_your_word": "Décrivez votre mot en une phrase",
   "time_remaining": "Temps Restant : {time}s",
   "next_player": "Joueur Suivant",
   
   "voting_phase_title": "Phase de Vote",
-  "voting_instructions": "Votez pour le joueur que vous pensez être un Sous-Couverture ou M. Blanc.",
+  "voting_instructions": "Votez pour le joueur que vous pensez être un agent Sous-Couverture ou M. Blanc.",
   "select_player_to_eliminate": "Sélectionnez un joueur à éliminer :",
   "cast_vote": "Voter",
   "votes_cast": "Votes Exprimés : {votes}/{total}",
@@ -147,7 +147,7 @@
   "ready_to_start": "Prêt à Commencer ?",
   "game_summary": "Résumé du Jeu",
   "total_players": "Total de Joueurs : {count}",
-  "game_settings_summary": "{undercovers} Sous-Couverture, M. Blanc : {mrWhite}, Limite de Temps : {time}s",
+  "game_settings_summary": "{undercovers} Agent(s) Sous-Couverture, M. Blanc : {mrWhite}, Limite de Temps : {time}s",
   "lets_play": "Jouons !",
   
   "help_tooltip_player_setup": "Ajoutez 4-20 joueurs pour commencer le jeu",
@@ -155,5 +155,34 @@
   "help_tooltip_mr_white": "M. Blanc ne reçoit pas de mot et doit deviner le mot civil s'il est éliminé",
   "help_tooltip_time_limit": "Définissez combien de temps chaque joueur a pour décrire son mot",
   "help_tooltip_difficulty": "Les difficultés plus élevées ont des paires de mots plus similaires",
-  "help_tooltip_categories": "Sélectionnez les catégories de mots à inclure dans le jeu"
+  "help_tooltip_categories": "Sélectionnez quelles catégories de mots inclure dans le jeu",
+  
+  "main_menu_title": "SOUS-COUVERTURE",
+  "main_menu_subtitle": "Le Jeu de Fête Ultime",
+  "main_menu_new_game": "Nouveau Jeu",
+  "main_menu_tutorial": "Tutoriel",
+  "main_menu_settings": "Paramètres",
+  "main_menu_version": "Version 1.0.0",
+  "main_menu_player_count": "4-20 Joueurs • Hors Ligne",
+  
+  "game_setup_edit_player": "Modifier Joueur",
+  "game_setup_add_player": "Ajouter Joueur",
+  "game_setup_player_count": "Joueurs ({count})",
+  "game_setup_player_requirement": "4-20 joueurs requis",
+  "game_setup_configuration": "Configuration du Jeu",
+  "game_setup_roles": "Rôles",
+  
+  "discussion_phase_title": "Phase de Discussion",
+  "discussion_phase_instructions": "Discutez de la description de chaque joueur pour identifier les agents sous-couverture.",
+  "discussion_phase_tips": "Conseils de Discussion",
+  "discussion_phase_tip_list": "• Demandez à chaque joueur sa description de mot\n• Cherchez les incohérences dans les histoires\n• Faites attention à qui semble incertain\n• Les mots de civils sont liés mais différents\n• Les mots de sous-couverture sont similaires mais pas les mêmes",
+  
+  "description_phase_app_bar": "Sous-Couverture",
+  "description_phase_current_turn": "Tour Actuel",
+  "description_phase_player_progress": "Joueur {current} sur {total}",
+  
+  "voting_elimination_title": "{player} était...",
+  "voting_elimination_message": "a été éliminé du jeu",
+  "voting_continue": "Continuer",
+  "voting_mr_white_eliminated": "M. Blanc Éliminé !"
 }

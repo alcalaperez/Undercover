@@ -4,6 +4,7 @@ import 'dart:async';
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/game_session.dart';
 import '../../data/models/player.dart';
 import '../../data/repositories/game_service.dart';
@@ -69,7 +70,22 @@ class _VotingScreenState extends State<VotingScreen>
     if (player.isEliminated) return;
     
     setState(() {
-      _selectedPlayer = player;
+      // Clear previous selection and set new one
+      if (_selectedPlayer?.id == player.id) {
+        // If clicking the same player, deselect them
+        _selectedPlayer = null;
+        _addToHistory('Deselected ${player.name} (ID: ${player.id})');
+      } else {
+        // Select the new player
+        _selectedPlayer = Player(
+          id: player.id,
+          name: player.name,
+          avatarIndex: player.avatarIndex,
+          role: player.role,
+          isEliminated: player.isEliminated,
+        );
+        _addToHistory('Selected ${player.name} (ID: ${player.id}) for voting');
+      }
     });
     
     _selectionController.forward().then((_) {
@@ -77,7 +93,6 @@ class _VotingScreenState extends State<VotingScreen>
     });
     
     HapticFeedback.mediumImpact();
-    _addToHistory('Selected ${player.name} for voting');
   }
 
   void _confirmVote() {
@@ -449,14 +464,14 @@ class _VotingScreenState extends State<VotingScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Vote the intrusors!',
+                      LocalizationService().translate('voting_header_title'),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'As a group, decide who to eliminate',
+                      LocalizationService().translate('voting_header_subtitle'),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.grey.shade600,
                       ),
@@ -488,9 +503,10 @@ class _VotingScreenState extends State<VotingScreen>
       itemCount: activePlayers.length,
       itemBuilder: (context, index) {
         final player = activePlayers[index];
-        final isSelected = _selectedPlayer?.id == player.id;
+        final isSelected = _selectedPlayer != null && _selectedPlayer!.id == player.id;
         
         return GestureDetector(
+          key: ValueKey('player_${player.id}'),
           onTap: () => _selectPlayer(player),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
@@ -564,7 +580,7 @@ class _VotingScreenState extends State<VotingScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Collective Decision'),
+        title: Text(LocalizationService().translate('voting_app_bar_title')),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -574,7 +590,7 @@ class _VotingScreenState extends State<VotingScreen>
               Navigator.of(context).popUntil((route) => route.isFirst);
             },
             icon: const Icon(Icons.home),
-            tooltip: 'Home',
+            tooltip: LocalizationService().translate('voting_home_tooltip'),
           ),
         ],
       ),
@@ -607,8 +623,8 @@ class _VotingScreenState extends State<VotingScreen>
                 width: double.infinity,
                 child: PrimaryButton(
                   text: _selectedPlayer == null 
-                      ? 'Select a Player for Elimination'
-                      : 'Eliminate ${_selectedPlayer!.name}',
+                      ? LocalizationService().translate('voting_select_player_button')
+                      : LocalizationService().translate('voting_eliminate_player_button', placeholders: {'player': _selectedPlayer!.name}),
                   onPressed: _selectedPlayer == null ? null : _confirmVote,
                 ),
               ),

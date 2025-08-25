@@ -4,6 +4,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/constants/animations.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/player.dart';
 import '../../data/models/game_settings.dart';
 import '../../data/repositories/game_service.dart';
@@ -559,117 +560,112 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                 ),
               ],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Role icon
-                Icon(
-                  roleIcon,
-                  size: 120,
-                  color: Colors.white,
-                ),
-                
-                const SizedBox(height: 24),
-                
-                // Role name
-                Text(
-                  'You are',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white70,
-                    fontSize: 18,
-                  ),
-                ),
-                
-                const SizedBox(height: 8),
-                
-                Text(
-                  roleName,
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Role icon
+                  Icon(
+                    roleIcon,
+                    size: 100,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 32),
-                
-                // Word section
-                if (role != PlayerRole.mrWhite) ...[
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
-                        width: 1,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Your word is:',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colors.white70,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          playerWord,
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                  
+                  const SizedBox(height: 16),
+                  
+                  // Role name
+                  Text(
+                    'You are',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Colors.white70,
+                      fontSize: 16,
                     ),
                   ),
-                ] else ...[
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
-                        width: 1,
-                      ),
+                  
+                  const SizedBox(height: 6),
+                  
+                  Text(
+                    roleName,
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
                     ),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.visibility_off,
-                          color: Colors.white,
-                          size: 32,
+                    textAlign: TextAlign.center,
+                  ),
+                  
+                  const SizedBox(height: 20),
+                  
+                  // Word section
+                  Flexible(
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.3),
+                          width: 1,
                         ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'You don\'t know the word!',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
+                      ),
+                      child: role != PlayerRole.mrWhite 
+                        ? Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Your word is:',
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                playerWord,
+                                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          )
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.visibility_off,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                'You don\'t know the word!',
+                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Listen carefully and try to blend in',
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Listen carefully and try to blend in',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Colors.white70,
-                            fontSize: 14,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
                     ),
                   ),
                 ],
-              ],
+              ),
             ),
           ),
         );
@@ -755,7 +751,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                   text: !_isCardSelected
                       ? 'Select a Card'
                       : !_isRoleRevealed
-                          ? 'Reveal Your Role'
+                          ? 'Reveal Your Word'
                           : _currentPlayerIndex < widget.players.length - 1
                               ? 'Pass to Next Player'
                               : 'Start Game',

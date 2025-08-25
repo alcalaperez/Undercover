@@ -103,7 +103,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
 
       setState(() {
         _players.add(Player(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          id: '${DateTime.now().millisecondsSinceEpoch}_${_players.length}',
           name: name.trim(),
           avatarIndex: finalAvatarIndex.toString(),
         ));
@@ -143,107 +143,121 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
           child: Container(
             width: MediaQuery.of(context).size.width * 0.9,
             padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Header
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      isEdit ? 'Edit Player' : 'Add Player',
-                      style: AppTextStyles.h3,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.8,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Header
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        isEdit ? 'Edit Player' : 'Add Player',
+                        style: AppTextStyles.h3,
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: const Icon(Icons.close),
+                      ),
+                    ],
+                  ),
+                  
+                  const SizedBox(height: 20),
+                  
+                  // Scrollable content
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          // Name input with quick suggestions
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: _nameController,
+                                  decoration: InputDecoration(
+                                    labelText: 'Player Name',
+                                    hintText: 'Enter player name',
+                                    errorText: _nameController.text.isNotEmpty && 
+                                               !_isNameValid(_nameController.text) 
+                                        ? _getNameError(_nameController.text)
+                                        : null,
+                                  ),
+                                  autofocus: !isEdit,
+                                  onChanged: (value) => setDialogState(() {}),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              IconButton(
+                                onPressed: () => _showQuickNameSuggestions(setDialogState),
+                                icon: const Icon(Icons.lightbulb_outline),
+                                tooltip: 'Quick Names',
+                              ),
+                            ],
+                          ),
+                          
+                          const SizedBox(height: 20),
+                          
+                          // Avatar selection
+                          AvatarSelector(
+                            selectedAvatarIndex: _selectedAvatarIndex,
+                            onAvatarSelected: (index) {
+                              setDialogState(() {
+                                _selectedAvatarIndex = index;
+                              });
+                            },
+                            unavailableAvatars: isEdit 
+                                ? _players.where((p) => p != _players[editIndex!])
+                                         .map((p) => int.tryParse(p.avatarIndex) ?? 0)
+                                         .toList()
+                                : _players.map((p) => int.tryParse(p.avatarIndex) ?? 0)
+                                         .toList(),
+                          ),
+                          
+                          const SizedBox(height: 24),
+                        ],
+                      ),
                     ),
-                    IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(Icons.close),
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 20),
-                
-                // Name input with quick suggestions
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
-                          labelText: 'Player Name',
-                          hintText: 'Enter player name',
-                          errorText: _nameController.text.isNotEmpty && 
-                                     !_isNameValid(_nameController.text) 
-                              ? _getNameError(_nameController.text)
+                  ),
+                  
+                  // Actions (always visible at bottom)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SecondaryButton(
+                          text: 'Cancel',
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: PrimaryButton(
+                          text: isEdit ? 'Update' : 'Add',
+                          onPressed: _nameController.text.isNotEmpty && 
+                                    _isNameValid(_nameController.text)
+                              ? () {
+                                  if (isEdit && editIndex != null) {
+                                    setState(() {
+                                      _players[editIndex] = _players[editIndex].copyWith(
+                                        name: _nameController.text.trim(),
+                                        avatarIndex: _selectedAvatarIndex.toString(),
+                                      );
+                                    });
+                                  } else {
+                                    _addPlayer(_nameController.text.trim(), _selectedAvatarIndex);
+                                  }
+                                  Navigator.of(context).pop();
+                                }
                               : null,
                         ),
-                        autofocus: !isEdit,
-                        onChanged: (value) => setDialogState(() {}),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      onPressed: () => _showQuickNameSuggestions(setDialogState),
-                      icon: const Icon(Icons.lightbulb_outline),
-                      tooltip: 'Quick Names',
-                    ),
-                  ],
-                ),
-                
-                const SizedBox(height: 20),
-                
-                // Avatar selection
-                AvatarSelector(
-                  selectedAvatarIndex: _selectedAvatarIndex,
-                  onAvatarSelected: (index) {
-                    setDialogState(() {
-                      _selectedAvatarIndex = index;
-                    });
-                  },
-                  unavailableAvatars: isEdit 
-                      ? _players.where((p) => p != _players[editIndex!])
-                               .map((p) => int.tryParse(p.avatarIndex) ?? 0)
-                               .toList()
-                      : _players.map((p) => int.tryParse(p.avatarIndex) ?? 0)
-                               .toList(),
-                ),
-                
-                const SizedBox(height: 24),
-                
-                // Actions
-                Row(
-                  children: [
-                    Expanded(
-                      child: SecondaryButton(
-                        text: 'Cancel',
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: PrimaryButton(
-                        text: isEdit ? 'Update' : 'Add',
-                        onPressed: _nameController.text.isNotEmpty && 
-                                  _isNameValid(_nameController.text)
-                            ? () {
-                                if (isEdit && editIndex != null) {
-                                  setState(() {
-                                    _players[editIndex] = _players[editIndex].copyWith(
-                                      name: _nameController.text.trim(),
-                                      avatarIndex: _selectedAvatarIndex.toString(),
-                                    );
-                                  });
-                                } else {
-                                  _addPlayer(_nameController.text.trim(), _selectedAvatarIndex);
-                                }
-                                Navigator.of(context).pop();
-                              }
-                            : null,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

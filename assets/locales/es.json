@@ -24,42 +24,42 @@
   "next": "Siguiente",
   "previous": "Anterior",
   "finish": "Finalizar",
-  
+
   "tutorial_welcome_title": "¡Bienvenido a Encubierto!",
   "tutorial_welcome_description": "Aprende a jugar este emocionante juego de deducción social.",
-  
+
   "tutorial_objective_title": "Objetivo del Juego",
   "tutorial_objective_description": "Los civiles deben encontrar y eliminar a todos los Encubiertos y al Sr. Blanco. Los Encubiertos deben sobrevivir hasta que solo quede un Civil.",
-  
+
   "tutorial_roles_title": "Roles de Jugadores",
   "tutorial_roles_description": "Los civiles reciben la misma palabra, los Encubiertos reciben una palabra similar, y el Sr. Blanco no recibe ninguna palabra.",
-  
+
   "tutorial_phases_title": "Fases del Juego",
   "tutorial_phases_description": "Cada ronda tiene una fase de descripción donde los jugadores describen su palabra, seguida de votación para eliminar sospechosos.",
-  
+
   "tutorial_voting_title": "Votación y Eliminación",
   "tutorial_voting_description": "Vota por el jugador que sospechas que es un Encubierto o el Sr. Blanco. El jugador con más votos es eliminado.",
-  
+
   "tutorial_mr_white_title": "Regla Especial del Sr. Blanco",
   "tutorial_mr_white_description": "Si el Sr. Blanco es eliminado, puede adivinar la palabra de los civiles. ¡Si acierta, el Sr. Blanco gana!",
-  
+
   "rules_title": "Reglas del Juego",
   "rules_setup": "Configuración",
-  "rules_setup_description": "• 4-20 jugadores\n• 1-3 Encubiertos\n• Sr. Blanco opcional\n• Cada jugador recibe un rol y una palabra",
-  
+  "rules_setup_description": "• 4-20 jugadores\\n• 1-3 Encubiertos\\n• Sr. Blanco opcional\\n• Cada jugador recibe un rol y una palabra",
+
   "rules_gameplay": "Jugabilidad",
-  "rules_gameplay_description": "• Los jugadores describen su palabra sin decirla\n• Después de las descripciones, votan para eliminar a un sospechoso\n• Continúa hasta que un equipo gane",
-  
+  "rules_gameplay_description": "• Los jugadores describen su palabra sin decirla\\n• Después de las descripciones, votan para eliminar a un sospechoso\\n• Continúa hasta que un equipo gane",
+
   "rules_winning": "Condiciones de Victoria",
-  "rules_winning_description": "• Los civiles ganan eliminando a todos los Encubiertos y al Sr. Blanco\n• Los Encubiertos ganan si sobreviven hasta que quede 1 Civil\n• El Sr. Blanco gana adivinando correctamente la palabra civil al ser eliminado",
-  
+  "rules_winning_description": "• Los civiles ganan eliminando a todos los Encubiertos y al Sr. Blanco\\n• Los Encubiertos ganan si sobreviven hasta que quede 1 Civil\\n• El Sr. Blanco gana adivinando correctamente la palabra civil al ser eliminado",
+
   "strategy_tips_title": "Consejos de Estrategia",
   "strategy_tip_1": "Da descripciones lo suficientemente específicas para convencer a otros de que conoces la palabra, pero lo suficientemente vagas para no ayudar a los oponentes.",
   "strategy_tip_2": "Escucha atentamente las descripciones de otros y busca inconsistencias o respuestas demasiado vagas.",
   "strategy_tip_3": "Como Encubierto, trata de mezclarte mientras recopilas información sobre la palabra real.",
   "strategy_tip_4": "El Sr. Blanco debe mantenerse callado y dejar que otros revelen información, luego hacer conjeturas educadas.",
   "strategy_tip_5": "Los civiles deben trabajar juntos para identificar comportamientos sospechosos y coordinar eliminaciones.",
-  
+
   "settings_language": "Idioma",
   "settings_sound_effects": "Efectos de Sonido",
   "settings_vibration": "Vibración",
@@ -69,7 +69,7 @@
   "settings_volume": "Volumen",
   "settings_music_volume": "Volumen de Música",
   "settings_effects_volume": "Volumen de Efectos",
-  
+
   "game_setup_title": "Configuración del Juego",
   "player_count": "Número de Jugadores",
   "undercover_count": "Encubiertos",
@@ -80,7 +80,7 @@
   "difficulty_easy": "Fácil",
   "difficulty_medium": "Medio",
   "difficulty_hard": "Difícil",
-  
+
   "category_animals": "Animales",
   "category_food": "Comida",
   "category_objects": "Objetos",
@@ -88,51 +88,51 @@
   "category_activities": "Actividades",
   "category_movies": "Películas",
   "category_professions": "Profesiones",
-  
+
   "phase_word_reveal": "Revelación de Palabras",
   "phase_description": "Fase de Descripción",
   "phase_discussion": "Discusión",
   "phase_voting": "Votación",
   "phase_results": "Resultados",
-  
+
   "word_reveal_instructions": "Pasa el teléfono a cada jugador para que puedan ver su palabra en privado.",
   "hold_to_reveal": "Mantén Presionado para Revelar",
   "i_memorized": "Lo He Memorizado",
   "pass_to_player": "Pasar a {player}",
-  
+
   "description_phase_title": "Fase de Descripción",
   "description_instructions": "Cada jugador describe su palabra en una oración sin decir la palabra real.",
   "your_turn": "Tu Turno",
   "describe_your_word": "Describe tu palabra en una oración",
   "time_remaining": "Tiempo Restante: {time}s",
   "next_player": "Siguiente Jugador",
-  
+
   "voting_phase_title": "Fase de Votación",
   "voting_instructions": "Vota por el jugador que crees que es un Encubierto o el Sr. Blanco.",
   "select_player_to_eliminate": "Selecciona un jugador para eliminar:",
   "cast_vote": "Emitir Voto",
   "votes_cast": "Votos Emitidos: {votes}/{total}",
-  
+
   "elimination_result": "¡{player} ha sido eliminado!",
   "player_role_revealed": "{player} era {role}",
   "voting_tie": "¡Empate en votos! Votando de nuevo...",
-  
+
   "mr_white_guess_title": "¡Última Oportunidad del Sr. Blanco!",
   "mr_white_guess_instructions": "¡{player} es el Sr. Blanco! Ahora puede adivinar la palabra civil.",
   "enter_your_guess": "Ingresa tu adivinanza para la palabra civil:",
   "guess_word": "Adivinar Palabra",
   "mr_white_correct": "¡El Sr. Blanco adivinó correctamente y gana!",
   "mr_white_incorrect": "¡El Sr. Blanco adivinó incorrectamente!",
-  
+
   "civilians_win": "¡Ganan los Civiles!",
   "undercovers_win": "¡Ganan los Encubiertos!",
   "mr_white_wins": "¡Gana el Sr. Blanco!",
-  
+
   "game_statistics": "Estadísticas del Juego",
   "rounds_played": "Rondas Jugadas: {rounds}",
   "words_used": "Palabras: {civilian} vs {undercover}",
   "final_players": "Jugadores Finales",
-  
+
   "add_player": "Agregar Jugador",
   "remove_player": "Eliminar Jugador",
   "player_name": "Nombre del Jugador",
@@ -140,20 +140,236 @@
   "name_required": "El nombre es requerido",
   "name_too_long": "El nombre es demasiado largo",
   "name_exists": "El nombre ya existe",
-  
+
   "quick_names": "Nombres Rápidos",
   "random_names": ["Alex", "Sam", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Avery", "Quinn"],
-  
+
   "ready_to_start": "¿Listo para Comenzar?",
   "game_summary": "Resumen del Juego",
   "total_players": "Total de Jugadores: {count}",
   "game_settings_summary": "{undercovers} Encubierto(s), Sr. Blanco: {mrWhite}, Límite de Tiempo: {time}s",
   "lets_play": "¡Juguemos!",
-  
+
   "help_tooltip_player_setup": "Agrega 4-20 jugadores para comenzar el juego",
   "help_tooltip_undercover_count": "Elige cuántos agentes Encubiertos incluir",
   "help_tooltip_mr_white": "El Sr. Blanco no recibe una palabra y debe adivinar la palabra civil si es eliminado",
   "help_tooltip_time_limit": "Establece cuánto tiempo tiene cada jugador para describir su palabra",
   "help_tooltip_difficulty": "Las dificultades más altas tienen pares de palabras más similares",
-  "help_tooltip_categories": "Selecciona qué categorías de palabras incluir en el juego"
+  "help_tooltip_categories": "Selecciona qué categorías de palabras incluir en el juego",
+
+  "main_menu_title": "ENCUBIERTO",
+  "main_menu_subtitle": "El Juego de Fiesta Definitivo",
+  "main_menu_new_game": "Nuevo Juego",
+  "main_menu_tutorial": "Tutorial",
+  "main_menu_settings": "Configuración",
+  "main_menu_version": "Versión 1.0.0",
+  "main_menu_player_count": "4-20 Jugadores • Sin Conexión",
+
+  "game_setup_edit_player": "Editar Jugador",
+  "game_setup_add_player": "Agregar Jugador",
+  "game_setup_player_count": "Jugadores ({count})",
+  "game_setup_player_requirement": "Se requieren 4-20 jugadores",
+  "game_setup_configuration": "Configuración del Juego",
+  "game_setup_roles": "Roles",
+
+  "discussion_phase_title": "Fase de Discusión",
+  "discussion_phase_instructions": "Discutan las descripciones de cada jugador para identificar a los agentes encubiertos.",
+  "discussion_phase_tips": "Consejos de Discusión",
+  "discussion_phase_tip_list": "• Pregunta a cada jugador sobre la descripción de su palabra\\n• Busca inconsistencias en las historias\\n• Presta atención a quién parece incierto\\n• Las palabras de civiles están relacionadas pero diferentes\\n• Las palabras de encubiertos son similares pero no iguales",
+
+  "description_phase_app_bar": "Encubierto",
+  "description_phase_current_turn": "Turno Actual",
+  "description_phase_player_progress": "Jugador {current} de {total}",
+
+  "voting_elimination_title": "{player} fue...",
+  "voting_elimination_message": "ha sido eliminado del juego",
+  "voting_continue": "Continuar",
+  "voting_mr_white_eliminated": "¡Sr. Blanco Eliminado!",
+
+  "splash_app_title": "ENCUBIERTO",
+  "splash_subtitle": "El Juego de Fiesta Definitivo",
+  "splash_initialization_error": "Error de Inicialización",
+  "splash_error_message": "Error al cargar los datos del juego. Por favor reinicia la aplicación.",
+  "splash_retry_button": "Reintentar",
+
+  "ready_to_start_title": "Listo para Comenzar",
+  "ready_to_start_setup_complete": "¡Configuración del Juego Completa!",
+  "ready_to_start_players_card": "Jugadores",
+  "ready_to_start_undercovers_card": "Encubiertos",
+  "ready_to_start_mr_white_card": "Sr. Blanco",
+  "ready_to_start_timer_label": "Temporizador:",
+  "ready_to_start_no_timer": "Sin Temporizador",
+  "ready_to_start_timer_seconds": "{seconds}s",
+  "ready_to_start_difficulty_label": "Dificultad:",
+  "ready_to_start_categories_label": "Categorías:",
+  "ready_to_start_categories_count": "{count} seleccionadas",
+  "ready_to_start_players_section": "Jugadores ({count})",
+  "ready_to_start_warning_title": "¡Asegúrate de que todos estén listos!",
+  "ready_to_start_warning_message": "Una vez que comience el juego, los roles se asignarán y revelarán a cada jugador en privado. Asegúrate de que todos puedan ver la pantalla claramente.",
+  "ready_to_start_back_button": "Volver a Configuración",
+  "ready_to_start_start_game": "Comenzar Juego",
+
+  "voting_app_bar_title": "Encubierto",
+  "voting_home_tooltip": "Inicio",
+  "voting_header_title": "¡Voten a los intrusos!",
+  "voting_header_subtitle": "Como grupo, decidan a quién eliminar",
+  "voting_instruction": "Como grupo, discutan y decidan quién debe ser eliminado",
+  "voting_select_player_button": "Seleccionar un Jugador para Eliminar",
+  "voting_eliminate_player_button": "Eliminar {player}",
+  "voting_elimination_dialog_title": "{player} era...",
+  "voting_role_civilian": "Civil",
+  "voting_role_undercover": "Agente Encubierto",
+  "voting_role_mr_white": "Sr. Blanco",
+  "voting_elimination_message": "ha sido eliminado del juego",
+  "voting_continue_button": "Continuar",
+  "voting_mr_white_eliminated_title": "¡Sr. Blanco Eliminado!",
+  "voting_mr_white_eliminated_message": "¡{player} era el Sr. Blanco! Ahora tiene la oportunidad de adivinar la palabra civil y ganar el juego.",
+  "voting_let_mr_white_guess": "Dejar que el Sr. Blanco Adivine",
+  "voting_mr_white_guess_title": "Última Oportunidad del Sr. Blanco",
+  "voting_mr_white_guess_question": "Sr. Blanco, ¿cuál es la palabra civil?",
+  "voting_guess_input_hint": "Ingresa tu adivinanza...",
+  "voting_submit_guess": "Enviar Adivinanza",
+  "voting_guess_correct": "¡Correcto!",
+  "voting_guess_wrong": "¡Incorrecto!",
+  "voting_guess_result": "Adivinanza: \"{guess}\"",
+  "voting_error_title": "Error de Votación",
+  "voting_ok_button": "OK",
+
+  "card_selection_title": "Selecciona tu Rol",
+  "card_selection_reshuffled_title": "¡Cartas Barajadas!",
+  "card_selection_mr_white_prevented": "Seleccionaste al Sr. Blanco, pero la configuración del juego impide que el Sr. Blanco vaya primero.",
+  "card_selection_reshuffled_message": "¡Las cartas han sido barajadas! ¡Por favor selecciona una nueva carta!",
+  "card_selection_select_new_card": "Seleccionar Nueva Carta",
+  "card_selection_setup_error": "Error de Configuración",
+  "card_selection_ok_button": "OK",
+  "card_selection_unknown_card": "?",
+  "card_selection_taken_card": "TOMADA",
+  "card_selection_role_civilian": "Civil",
+  "card_selection_role_undercover": "Agente\\nEncubierto",
+  "card_selection_role_mr_white": "Sr. Blanco",
+  "card_selection_no_word": "¡No conoces la palabra!",
+  "card_selection_you_are": "Eres",
+  "card_selection_your_word": "Tu palabra es:",
+  "card_selection_mr_white_message": "¡No conoces la palabra!",
+  "card_selection_mr_white_instruction": "Escucha atentamente y trata de mezclarte",
+
+  "result_title": "Resultados del Juego",
+  "result_civilians_win": "¡Ganan los Civiles!",
+  "result_undercovers_win": "¡Ganan los Encubiertos!",
+  "result_mr_white_wins": "¡Gana el Sr. Blanco!",
+  "result_draw": "¡Es un Empate!",
+  "result_game_over": "Fin del Juego",
+  "result_role_reveal": "Revelación de Roles",
+  "result_civilians_group": "Civiles",
+  "result_undercovers_group": "Encubiertos",
+  "result_mr_white_group": "Sr. Blanco",
+  "result_winners_badge": "GANADORES",
+  "result_word_reveal": "Revelación de Palabras",
+  "result_civilian_word": "Palabra Civil",
+  "result_undercover_word": "Palabra Encubierta",
+  "result_category_label": "Categoría: {category}",
+  "result_game_summary": "Resumen del Juego",
+  "result_stat_duration": "Duración",
+  "result_stat_players": "Jugadores",
+  "result_stat_rounds": "Rondas",
+  "result_stat_eliminated": "Eliminados",
+  "result_stat_remaining": "Restantes",
+  "result_stat_difficulty": "Dificultad",
+  "result_play_again": "Jugar de Nuevo",
+  "result_share_results": "Compartir Resultados",
+  "result_main_menu": "Menú Principal",
+
+  "description_phase_tips_title": "Consejos de Descripción",
+  "description_phase_tips": "• Sé vago pero no demasiado críptico\\n• No menciones directamente tu palabra\\n• Trata de relacionar tu palabra con conceptos comunes\\n• Mantén las descripciones cortas y simples",
+  "description_phase_start_discussion": "Iniciar Discusión",
+
+  "discussion_phase_app_bar": "Encubierto",
+  "discussion_phase_home_tooltip": "Inicio",
+  "discussion_phase_players_count": "Jugadores ({count})",
+  "discussion_phase_call_vote": "Convocar Votación",
+
+  "game_setup_enhanced_title": "Configuración del Juego",
+  "game_setup_enhanced_players_tab": "Jugadores",
+  "game_setup_enhanced_settings_tab": "Configuración del Juego",
+  "game_setup_enhanced_players_count": "Jugadores ({count})",
+  "game_setup_enhanced_players_requirement": "Se requieren 4-20 jugadores",
+  "game_setup_enhanced_shuffle_tooltip": "Barajar Orden",
+  "game_setup_enhanced_add_player_tooltip": "Agregar Jugador",
+  "game_setup_enhanced_edit_player_tooltip": "Editar Jugador",
+  "game_setup_enhanced_remove_player_tooltip": "Eliminar Jugador",
+  "game_setup_enhanced_edit_dialog_title": "Editar Jugador",
+  "game_setup_enhanced_add_dialog_title": "Agregar Jugador",
+  "game_setup_enhanced_player_name_label": "Nombre del Jugador",
+  "game_setup_enhanced_player_name_hint": "Ingresa nombre del jugador",
+  "game_setup_enhanced_quick_names_tooltip": "Nombres Rápidos",
+  "game_setup_enhanced_cancel_button": "Cancelar",
+  "game_setup_enhanced_update_button": "Actualizar",
+  "game_setup_enhanced_add_button": "Agregar",
+  "game_setup_enhanced_configuration_title": "Configuración del Juego",
+  "game_setup_enhanced_roles_title": "Roles",
+  "game_setup_enhanced_undercover_count": "Número de Encubiertos",
+  "game_setup_enhanced_include_mr_white": "Incluir Sr. Blanco",
+  "game_setup_enhanced_mr_white_description": "El Sr. Blanco no conoce ninguna palabra",
+  "game_setup_enhanced_prevent_mr_white_first": "Prevenir Sr. Blanco Primero",
+  "game_setup_enhanced_mr_white_first_description": "El Sr. Blanco no irá primero en la revelación de palabras",
+  "game_setup_enhanced_timer_settings": "Configuración de Temporizador",
+  "game_setup_enhanced_no_timer": "Sin Temporizador",
+  "game_setup_enhanced_timer_seconds": "{seconds}s por descripción",
+  "game_setup_enhanced_word_configuration": "Configuración de Palabras",
+  "game_setup_enhanced_difficulty_level": "Nivel de Dificultad",
+  "game_setup_enhanced_start_game": "Comenzar Juego",
+  "game_setup_enhanced_name_empty_error": "El nombre no puede estar vacío",
+  "game_setup_enhanced_name_exists_error": "El nombre ya existe",
+
+  "settings_audio_vibration_section": "Audio y Vibración",
+
+  "tutorial_civilian_example_word": "Palabra: Manzana",
+  "tutorial_undercover_example_word": "Palabra: Naranja",
+  "tutorial_mr_white_example_word": "Palabra: ???",
+
+  "how_to_play_title": "Cómo Jugar",
+  "how_to_play_screen_title": "Pantalla de Cómo Jugar",
+  "how_to_play_placeholder": "El contenido del tutorial y ayuda se implementará en el Sprint 8",
+  "how_to_play_back_button": "Volver al Menú",
+
+  "role_reveal_loading": "Configurando juego...",
+  "role_reveal_setup_error": "Error de Configuración del Juego",
+  "role_reveal_back_to_setup": "Volver a Configuración",
+  "role_reveal_player_progress": "Jugador {current} de {total}",
+  "role_reveal_civilian": "CIVIL",
+  "role_reveal_undercover": "ENCUBIERTO",
+  "role_reveal_mr_white": "SR. BLANCO",
+  "role_reveal_civilian_desc": "Conoces la palabra. Descríbela sin ser demasiado obvio.",
+  "role_reveal_undercover_desc": "Tienes una palabra diferente. Trata de mezclarte con los civiles.",
+  "role_reveal_mr_white_desc": "No conoces ninguna palabra. Escucha atentamente y trata de adivinar de qué están hablando todos.",
+  "role_reveal_card_title": "ENCUBIERTO",
+  "role_reveal_tap_instruction": "Toca para revelar tu palabra",
+  "role_reveal_hand_phone": "Entrega el teléfono a {player}",
+  "role_reveal_tap_card": "Toca la carta para revelar tu palabra",
+  "role_reveal_memorize": "Memoriza tu rol y palabra",
+  "role_reveal_warning": "¡No dejes que otros jugadores vean!",
+  "role_reveal_next_player": "Siguiente Jugador",
+  "role_reveal_start_game": "Comenzar Juego",
+
+  "game_setup_simple_title": "Configuración del Juego",
+  "game_setup_players_tab_simple": "Jugadores",
+  "game_setup_settings_tab_simple": "Configuración",
+  "game_setup_add_player_dialog": "Agregar Jugador",
+  "game_setup_player_name_simple": "Nombre del Jugador",
+  "game_setup_enter_player_name": "Ingresa nombre del jugador",
+  "game_setup_avatar_label": "Avatar:",
+  "game_setup_cancel_simple": "Cancelar",
+  "game_setup_add_simple": "Agregar",
+  "game_setup_players_count_simple": "Jugadores ({count})",
+  "game_setup_add_player_tooltip_simple": "Agregar Jugador",
+  "game_setup_players_requirement_footer": "Se requieren 4-20 jugadores • Mínimo 4 jugadores para comenzar",
+  "game_setup_game_settings_simple": "Configuración del Juego",
+  "game_setup_undercover_count_simple": "Número de Encubiertos",
+  "game_setup_include_mr_white_simple": "Incluir Sr. Blanco",
+  "game_setup_mr_white_desc_simple": "El Sr. Blanco no conoce ninguna palabra",
+  "game_setup_description_timer": "Temporizador de Descripción",
+  "game_setup_no_timer_simple": "Sin Temporizador",
+  "game_setup_timer_format": "{seconds}s",
+  "game_setup_word_difficulty_simple": "Dificultad de Palabras",
+  "game_setup_start_game_simple": "Comenzar Juego"
 }

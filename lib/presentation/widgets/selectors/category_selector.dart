@@ -81,23 +81,20 @@ class _CategorySelectorState extends State<CategorySelector> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Word Categories',
-              style: AppTextStyles.labelLarge,
+            Expanded(
+              child: Text(
+                'Word Categories',
+                style: AppTextStyles.labelLarge,
+              ),
             ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: _selectAll,
-                  child: const Text('Select All'),
-                ),
-                TextButton(
-                  onPressed: _selectNone,
-                  child: const Text('Clear'),
-                ),
-              ],
+            TextButton(
+              onPressed: _selectAll,
+              child: const Text('Select All'),
+            ),
+            TextButton(
+              onPressed: _selectNone,
+              child: const Text('Clear'),
             ),
           ],
         ),

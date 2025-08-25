@@ -248,7 +248,7 @@ Play Undercover Game!
               Text(
                 _getWinnerSubtitle(),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.grey.shade600,
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -453,13 +453,16 @@ Play Undercover Game!
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                  ),
                 ),
                 child: Text(
                   'Category: ${wordPair.category}',
                   style: TextStyle(
-                    color: Colors.grey.shade700,
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -486,6 +489,7 @@ Play Undercover Game!
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: color,
               fontWeight: FontWeight.bold,
+              fontSize: 11
             ),
           ),
           const SizedBox(height: 8),
@@ -494,6 +498,7 @@ Play Undercover Game!
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: color,
               fontWeight: FontWeight.bold,
+              fontSize: 19
             ),
             textAlign: TextAlign.center,
           ),
@@ -590,9 +595,11 @@ Play Undercover Game!
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+        ),
       ),
       child: Column(
         children: [
@@ -602,12 +609,15 @@ Play Undercover Game!
             value,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
+              fontSize: 12,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Colors.grey.shade600,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              fontSize: 11
             ),
             textAlign: TextAlign.center,
           ),

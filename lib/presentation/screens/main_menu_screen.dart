@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/animations.dart';
 import '../../core/utils/routes.dart';
+import '../../core/utils/localization_service.dart';
 import '../widgets/buttons/primary_button.dart';
 import '../widgets/buttons/secondary_button.dart';
 
@@ -131,7 +132,7 @@ class _MainMenuScreenState extends State<MainMenuScreen>
 
                               // Title
                               Text(
-                                'UNDERCOVER',
+                                LocalizationService().translate('main_menu_title'),
                                 style: AppTextStyles.h1.copyWith(
                                   color: AppColors.primary,
                                   fontSize: size.width > 600 ? 40 : 32,
@@ -144,7 +145,7 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                               const SizedBox(height: 8),
 
                               Text(
-                                'The Ultimate Party Game',
+                                LocalizationService().translate('main_menu_subtitle'),
                                 style: AppTextStyles.bodyLarge.copyWith(
                                   color: theme.colorScheme.onBackground.withOpacity(0.7),
                                   fontSize: 18,
@@ -164,7 +165,7 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                               SizedBox(
                                 width: double.infinity,
                                 child: PrimaryButton(
-                                  text: 'New Game',
+                                  text: LocalizationService().translate('main_menu_new_game'),
                                   icon: Icons.play_arrow,
                                   onPressed: _navigateToGameSetup,
                                 ),
@@ -175,7 +176,7 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                               SizedBox(
                                 width: double.infinity,
                                 child: SecondaryButton(
-                                  text: 'Tutorial',
+                                  text: LocalizationService().translate('main_menu_tutorial'),
                                   icon: Icons.school,
                                   onPressed: _navigateToTutorial,
                                 ),
@@ -186,7 +187,7 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                               SizedBox(
                                 width: double.infinity,
                                 child: SecondaryButton(
-                                  text: 'Settings',
+                                  text: LocalizationService().translate('main_menu_settings'),
                                   icon: Icons.settings,
                                   onPressed: _navigateToSettings,
                                 ),
@@ -202,14 +203,14 @@ class _MainMenuScreenState extends State<MainMenuScreen>
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                'Version 1.0.0',
+                                LocalizationService().translate('main_menu_version'),
                                 style: AppTextStyles.caption.copyWith(
                                   color: theme.colorScheme.onBackground.withOpacity(0.5),
                                 ),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '4-20 Players • Offline Play',
+                                LocalizationService().translate('main_menu_player_count'),
                                 style: AppTextStyles.caption.copyWith(
                                   color: theme.colorScheme.onBackground.withOpacity(0.7),
                                 ),

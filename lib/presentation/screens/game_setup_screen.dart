@@ -56,7 +56,7 @@ class _GameSetupScreenState extends State<GameSetupScreen>
     if (_players.length < 20) {
       setState(() {
         _players.add(Player(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          id: '${DateTime.now().millisecondsSinceEpoch}_${_players.length}',
           name: name,
           avatarIndex: avatarIndex,
         ));

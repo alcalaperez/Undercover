@@ -8,7 +8,7 @@
 PRODUCT_NAME = undercover_game
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.undercover.undercoverGame
+PRODUCT_BUNDLE_IDENTIFIER = com.under.undercover
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.example.undercover. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.under.undercover. All rights reserved.

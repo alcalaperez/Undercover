@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example.undercover" "\0"
+            VALUE "CompanyName", "com.under.undercover" "\0"
             VALUE "FileDescription", "undercover_game" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "undercover_game" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example.undercover. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.under.undercover. All rights reserved." "\0"
             VALUE "OriginalFilename", "undercover_game.exe" "\0"
             VALUE "ProductName", "undercover_game" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

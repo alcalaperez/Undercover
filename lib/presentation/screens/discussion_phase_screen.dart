@@ -69,14 +69,14 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              _buildPlayerList(),
-              const SizedBox(height: 16),
-              _buildDiscussionInfoCard(),
-              const SizedBox(height: 16),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      _buildPlayerList(),
+                      const SizedBox(height: 16),
+                      _buildDiscussionInfoCard(),
+                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -120,9 +120,9 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.green.shade50,
+                color: Colors.green.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.green.shade200),
+                border: Border.all(color: Colors.green.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,13 +131,15 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                     'Discussion Tips',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.green.shade700,
+                      color: Colors.green,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '• Ask each player about their word description\n• Look for inconsistencies in stories\n• Pay attention to who seems uncertain\n• Civilian words are related but different\n• Undercover words are similar but not the same',
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   )
                 ],
               ),

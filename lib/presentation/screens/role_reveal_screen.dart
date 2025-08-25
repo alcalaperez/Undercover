@@ -297,7 +297,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
           ),
           SizedBox(height: 10),
           Text(
-            'Tap to reveal your role',
+            'Tap to reveal your word',
             style: TextStyle(
               color: Colors.white70,
               fontSize: 16,
@@ -448,7 +448,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Tap the card to reveal your role',
+                    'Tap the card to reveal your word',
                     style: AppTextStyles.bodySmall.copyWith(
                       color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
                     ),
