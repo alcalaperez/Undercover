@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/utils/localization_service.dart';
-import '../../core/utils/audio_service.dart';
 import '../../core/utils/preferences_service.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -12,7 +11,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final AudioService _audioService = AudioService();
   final LocalizationService _localizationService = LocalizationService();
 
   String _selectedLanguage = 'en';
@@ -116,7 +114,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               setState(() {
                 _selectedLanguage = newValue;
               });
-              _audioService.buttonFeedback();
             }
           },
         ),

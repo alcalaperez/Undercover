@@ -102,7 +102,6 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
       _isCardSelected = true;
     });
 
-    HapticFeedback.mediumImpact();
     _cardController.forward();
   }
 
@@ -134,7 +133,6 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
     });
 
     _revealController.forward();
-    HapticFeedback.heavyImpact();
   }
 
   void _handleMrWhiteFirstDrawPrevention() {
@@ -209,8 +207,6 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
     // Reset animations
     _cardController.reset();
     _revealController.reset();
-    
-    HapticFeedback.lightImpact();
   }
 
   void _nextPlayer() {

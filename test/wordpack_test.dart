@@ -1,7 +1,7 @@
+import 'package:Undercover/core/utils/localization_service.dart';
+import 'package:Undercover/data/repositories/word_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/services.dart';
-import 'package:undercover_game/data/repositories/word_repository.dart';
-import 'package:undercover_game/core/utils/localization_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

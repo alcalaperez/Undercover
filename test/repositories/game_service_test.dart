@@ -1,8 +1,8 @@
+import 'package:Undercover/core/constants/enums.dart';
+import 'package:Undercover/data/models/game_settings.dart';
+import 'package:Undercover/data/models/player.dart';
+import 'package:Undercover/data/repositories/game_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:undercover_game/data/models/player.dart';
-import 'package:undercover_game/data/models/game_settings.dart';
-import 'package:undercover_game/data/repositories/game_service.dart';
-import 'package:undercover_game/core/constants/enums.dart';
 
 void main() {
   group('GameService', () {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/utils/localization_service.dart';
-import '../../core/utils/audio_service.dart';
 
 class RulesReferenceScreen extends StatefulWidget {
   const RulesReferenceScreen({super.key});
@@ -13,7 +12,6 @@ class RulesReferenceScreen extends StatefulWidget {
 class _RulesReferenceScreenState extends State<RulesReferenceScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final AudioService _audioService = AudioService();
 
   @override
   void initState() {
@@ -42,7 +40,6 @@ class _RulesReferenceScreenState extends State<RulesReferenceScreen>
           indicatorColor: Colors.white,
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
-          onTap: (index) => _audioService.buttonFeedback(),
           tabs: [
             Tab(
               icon: const Icon(Icons.settings),

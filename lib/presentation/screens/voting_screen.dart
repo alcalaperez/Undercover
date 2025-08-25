@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:async';
 import '../../core/themes/app_theme.dart';
 import '../../core/constants/enums.dart';
@@ -91,8 +90,6 @@ class _VotingScreenState extends State<VotingScreen>
     _selectionController.forward().then((_) {
       _selectionController.reverse();
     });
-    
-    HapticFeedback.mediumImpact();
   }
 
   void _confirmVote() {
@@ -129,7 +126,6 @@ class _VotingScreenState extends State<VotingScreen>
       });
       
       _addToHistory(LocalizationService().translate('voting_group_decision').replaceAll('{player}', _selectedPlayer!.name));
-      HapticFeedback.heavyImpact();
       
       // Show voting complete message
       _proceedToResults();

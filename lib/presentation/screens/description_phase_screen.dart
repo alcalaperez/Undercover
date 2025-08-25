@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:async';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
@@ -95,7 +94,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
         _timerController.value = progress;
         
         if (_remainingSeconds == 10 || _remainingSeconds == 5) {
-          HapticFeedback.mediumImpact();
+          // Haptic feedback for time warnings
         }
         
         if (_remainingSeconds == 0) {
@@ -124,7 +123,6 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
     setState(() {
       _isTimerRunning = false;
     });
-    HapticFeedback.heavyImpact();
     _addToHistory('${_getCurrentPlayer().name}s time expired');
     // Automatically move to the next player after a short delay
     Future.delayed(const Duration(seconds: 2), () {
@@ -159,9 +157,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
           _startTimer(); // Restart the timer
         }
 
-        _addToHistory('${_getCurrentPlayer().name}\'s turn to describe');
-
-        HapticFeedback.mediumImpact();
+        _addToHistory("${_getCurrentPlayer().name}'s turn to describe");
 
       } else {
         // All players have had their turn
@@ -170,7 +166,6 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
           _isTimerRunning = false;
         });
 
-        HapticFeedback.heavyImpact();
         _addToHistory('All players completed description phase');
 
         _navigateToDiscussion();

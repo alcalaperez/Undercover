@@ -21,7 +21,16 @@ import 'data/models/game_settings.dart';
 import 'data/models/game_session.dart';
 
 void main() {
+  // Initialize the localization service with default language
+  WidgetsFlutterBinding.ensureInitialized();
+  _initializeLocalization();
   runApp(const UndercoverApp());
+}
+
+// Initialize localization service with default language
+Future<void> _initializeLocalization() async {
+  final localizationService = LocalizationService();
+  await localizationService.load('en'); // Load English as default
 }
 
 class UndercoverApp extends StatelessWidget {

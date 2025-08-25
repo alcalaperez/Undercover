@@ -105,6 +105,7 @@ class LocalizationService {
   String get civilians_win => translate('civilians_win');
   String get undercovers_win => translate('undercovers_win');
   String get mr_white_wins => translate('mr_white_wins');
+  String get strategy_tips_title => translate('strategy_tips_title');
 }
 
 class AppLocalizations {
@@ -151,6 +152,7 @@ class AppLocalizations {
   String get civilians_win => _localizationService.civilians_win;
   String get undercovers_win => _localizationService.undercovers_win;
   String get mr_white_wins => _localizationService.mr_white_wins;
+  String get strategy_tips_title => _localizationService.translate('strategy_tips_title');
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

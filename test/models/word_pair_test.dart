@@ -1,6 +1,6 @@
+import 'package:Undercover/core/constants/enums.dart';
+import 'package:Undercover/data/models/word_pair.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:undercover_game/data/models/word_pair.dart';
-import 'package:undercover_game/core/constants/enums.dart';
 
 void main() {
   group('WordPair', () {

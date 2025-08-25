@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/themes/app_theme.dart';
 import '../../core/utils/localization_service.dart';
-import '../../core/utils/audio_service.dart';
 import '../widgets/buttons/primary_button.dart';
 import '../widgets/buttons/secondary_button.dart';
 
@@ -14,7 +13,6 @@ class TutorialScreen extends StatefulWidget {
 
 class _TutorialScreenState extends State<TutorialScreen> {
   final PageController _pageController = PageController();
-  final AudioService _audioService = AudioService();
   int _currentIndex = 0;
   
   final List<TutorialStep> _tutorialSteps = [
@@ -62,44 +60,36 @@ class _TutorialScreenState extends State<TutorialScreen> {
     super.dispose();
   }
 
-  void _nextStep() {
-    _audioService.buttonFeedback();
+    void _nextPage() {
     if (_currentIndex < _tutorialSteps.length - 1) {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
       setState(() {
         _currentIndex++;
       });
-      _pageController.animateToPage(
-        _currentIndex,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _finishTutorial();
     }
   }
 
-  void _previousStep() {
-    _audioService.buttonFeedback();
+  void _previousPage() {
     if (_currentIndex > 0) {
-      setState(() {
-        _currentIndex--;
-      });
-      _pageController.animateToPage(
-        _currentIndex,
+      _pageController.previousPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
+      setState(() {
+        _currentIndex--;
+      });
     }
   }
 
   void _skipTutorial() {
-    _audioService.buttonFeedback();
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
   void _finishTutorial() {
-    _audioService.buttonFeedback();
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -232,7 +222,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   Expanded(
                     child: SecondaryButton(
                       text: localization.previous,
-                      onPressed: _previousStep,
+                      onPressed: _previousPage,
                     ),
                   ),
                 if (_currentIndex > 0) const SizedBox(width: 16),
@@ -243,7 +233,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     text: _currentIndex == _tutorialSteps.length - 1
                         ? localization.finish
                         : localization.next,
-                    onPressed: _nextStep,
+                    onPressed: _nextPage,
                   ),
                 ),
               ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/utils/localization_service.dart';
-import '../../../core/utils/audio_service.dart';
 
 class HelpTooltip extends StatelessWidget {
   final String messageKey;
@@ -28,7 +27,6 @@ class HelpTooltip extends StatelessWidget {
     }
 
     final localization = LocalizationService();
-    final audioService = AudioService();
 
     return Tooltip(
       message: localization.translate(messageKey),
@@ -53,9 +51,6 @@ class HelpTooltip extends StatelessWidget {
       preferBelow: true,
       triggerMode: triggerMode ?? TooltipTriggerMode.longPress,
       waitDuration: waitDuration ?? const Duration(milliseconds: 500),
-      onTriggered: () {
-        audioService.lightVibration();
-      },
       child: child,
     );
   }
@@ -78,7 +73,6 @@ class HelpIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localization = LocalizationService();
-    final audioService = AudioService();
 
     return IconButton(
       icon: Icon(
@@ -87,7 +81,6 @@ class HelpIconButton extends StatelessWidget {
         color: color ?? const Color(0xFF6366F1).withOpacity(0.7),
       ),
       onPressed: onPressed ?? () {
-        audioService.lightVibration();
         _showHelpDialog(context, localization);
       },
       tooltip: 'Help',
