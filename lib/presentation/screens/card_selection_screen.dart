@@ -94,7 +94,8 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   }
 
   void _selectCard(int cardIndex) {
-    if (_isCardSelected || _usedCardIndices.contains(cardIndex)) return;
+    // Allow changing the first selected card before role is revealed
+    if (_usedCardIndices.contains(cardIndex)) return;
 
     setState(() {
       _selectedCardIndex = cardIndex;
@@ -281,7 +282,9 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
       itemBuilder: (context, index) {
         final isSelected = _selectedCardIndex == index;
         final isUsed = _usedCardIndices.contains(index);
-        final isSelectable = !_isCardSelected && !isUsed;
+        // Allow selecting cards if not used and either no card is selected yet or role is not revealed
+        final isSelectable = (!isUsed && (!_isCardSelected || !_isRoleRevealed)) || 
+                            (isSelected && !_isRoleRevealed); // Allow changing selected card before reveal
         
         return GestureDetector(
           onTap: isSelectable ? () => _selectCard(index) : null,
@@ -300,7 +303,7 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                     color: isUsed 
                         ? Colors.grey.shade400
                         : isFlipped 
-                            ? _getRoleColor(index) 
+                            ? AppColors.primary // Use uniform primary color for all roles
                             : AppColors.cardBack,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
@@ -406,10 +409,8 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
   }
 
   Widget _buildRoleCard(int cardIndex) {
-    final role = _getCardRole(cardIndex);
-    final roleIcon = _getRoleIcon(role);
-    final roleName = _getRoleName(role);
-    
+    // Don't show role information during card selection
+    // Only show generic "Selected" text to maintain mystery
     return Transform(
       alignment: Alignment.center,
       transform: Matrix4.identity()..rotateY(3.14159), // Flip the content back
@@ -420,14 +421,14 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              roleIcon,
+              Icons.check_circle,
               size: 32,
               color: Colors.white,
             ),
             const SizedBox(height: 8),
             FittedBox(
               child: Text(
-                roleName,
+                LocalizationService().translate('card_selection_selected'),
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -437,35 +438,33 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
                 maxLines: 2,
               ),
             ),
-            if (_isRoleRevealed && role != PlayerRole.mrWhite) ...[
-              const SizedBox(height: 6),
-              AnimatedBuilder(
-                animation: _revealAnimation,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _revealAnimation.value,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        _getPlayerWord(role),
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+            const SizedBox(height: 6),
+            AnimatedBuilder(
+              animation: _revealAnimation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _revealAnimation.value,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                  );
-                },
-              ),
-            ],
+                    child: Text(
+                      LocalizationService().translate('card_selection_word_assigned'),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -482,9 +481,10 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
     final role = _getCardRole(cardIndex);
     switch (role) {
       case PlayerRole.civilian:
-        return AppColors.civilian;
+        return AppColors.cardBack;
+      // For showing the card, we cannot disclose who are undercover
       case PlayerRole.undercover:
-        return AppColors.undercover;
+        return AppColors.cardBack;
       case PlayerRole.mrWhite:
         return AppColors.mrWhite;
     }
@@ -536,8 +536,6 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
     final localization = LocalizationService();
     final role = _getCardRole(_selectedCardIndex!);
     final roleColor = _getRoleColor(_selectedCardIndex!);
-    final roleIcon = _getRoleIcon(role);
-    final roleName = _getRoleName(role).replaceAll('\n', ' ');
     final playerWord = _getPlayerWord(role);
     
     return AnimatedBuilder(
@@ -571,39 +569,27 @@ class _CardSelectionScreenState extends State<CardSelectionScreen>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Role icon
+                  // Role icon - generic for all roles to maintain mystery
                   Icon(
-                    roleIcon,
+                    Icons.vpn_key,
                     size: 100,
                     color: Colors.white,
                   ),
                   
                   const SizedBox(height: 16),
                   
-                  // Role name
+                  // Generic message
                   Text(
-                    localization.translate('card_selection_you_are'),
+                    localization.translate('card_selection_your_card'),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Colors.white70,
                       fontSize: 16,
                     ),
                   ),
                   
-                  const SizedBox(height: 6),
-                  
-                  Text(
-                    roleName,
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  
                   const SizedBox(height: 20),
                   
-                  // Word section
+                  // Word section - this is what matters for gameplay
                   Flexible(
                     child: Container(
                       width: double.infinity,

@@ -249,6 +249,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
       animation: _cardFlipAnimation,
       builder: (context, child) {
         final isShowingFront = _cardFlipAnimation.value < 0.5;
+        // Use uniform color for both front and back to hide role information
         return Transform(
           alignment: Alignment.center,
           transform: Matrix4.identity()
@@ -258,7 +259,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
             width: 300,
             height: 400,
             decoration: BoxDecoration(
-              color: isShowingFront ? AppColors.primary : _getRoleColor(),
+              color: AppColors.primary, // Use uniform color instead of role color
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
@@ -320,7 +321,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
       child: Container(
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: _getRoleColor(),
+          color: AppColors.primary, // Use uniform color instead of role color
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -330,8 +331,9 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
               opacity: _textFadeAnimation,
               child: Column(
                 children: [
+                  // Show generic role text instead of role-specific text
                   Text(
-                    _getRoleText(),
+                    LocalizationService().translate('role_reveal_your_role'),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -343,8 +345,9 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                   
                   const SizedBox(height: 20),
                   
+                  // Show generic description instead of role-specific description
                   Text(
-                    _getRoleDescription(),
+                    LocalizationService().translate('role_reveal_role_description'),
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                       fontSize: 16,
@@ -353,7 +356,8 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                     textAlign: TextAlign.center,
                   ),
                   
-                  if (_isWordVisible && _currentPlayer.assignedWord.isNotEmpty) ...[
+                  // Show word only for non-Mr. White players
+                  if (_isWordVisible) ...[
                     const SizedBox(height: 30),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -366,8 +370,8 @@ class _RoleRevealScreenState extends State<RoleRevealScreen>
                       ),
                       child: Text(
                         _currentPlayer.assignedWord.toUpperCase(),
-                        style: TextStyle(
-                          color: _getRoleColor(),
+                        style: const TextStyle(
+                          color: AppColors.primary,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1,

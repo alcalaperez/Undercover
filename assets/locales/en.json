@@ -45,13 +45,13 @@
 
   "rules_title": "Game Rules",
   "rules_setup": "Setup",
-  "rules_setup_description": "• 4-20 players\\n• 1-3 Undercovers\\n• Optional Mr. White\\n• Each player gets assigned a role and word",
+  "rules_setup_description": "• 4-20 players\n• 1-3 Undercovers\n• Optional Mr. White\n• Each player gets assigned a role and word",
 
   "rules_gameplay": "Gameplay",
-  "rules_gameplay_description": "• Players describe their word without saying it\\n• After descriptions, vote to eliminate a suspect\\n• Continue until a team wins",
+  "rules_gameplay_description": "• Players describe their word without saying it\n• After descriptions, vote to eliminate a suspect\n• Continue until a team wins",
 
   "rules_winning": "Win Conditions",
-  "rules_winning_description": "• Civilians win by eliminating all Undercovers and Mr. White\\n• Undercovers win if they survive until 1 Civilian remains\\n• Mr. White wins by correctly guessing the Civilian word when eliminated",
+  "rules_winning_description": "• Civilians win by eliminating all Undercovers and Mr. White\n• Undercovers win if they survive until 1 Civilian remains\n• Mr. White wins by correctly guessing the Civilian word when eliminated",
 
   "strategy_tips_title": "Strategy Tips",
   "strategy_tip_1": "Give descriptions that are specific enough to convince others you know the word, but vague enough to not help opponents.",
@@ -175,7 +175,7 @@
   "discussion_phase_title": "Discussion Phase",
   "discussion_phase_instructions": "Discuss each player's descriptions to identify the undercover agents.",
   "discussion_phase_tips": "Discussion Tips",
-  "discussion_phase_tip_list": "• Ask each player about their word description\\n• Look for inconsistencies in stories\\n• Pay attention to who seems uncertain\\n• Civilian words are related but different\\n• Undercover words are similar but not the same",
+  "discussion_phase_tip_list": "• Ask each player about their word description\n• Look for inconsistencies in stories\n• Pay attention to who seems uncertain\n• Civilian words are related but different\n• Undercover words are similar but not the same",
 
   "description_phase_app_bar": "Undercover",
   "description_phase_current_turn": "Current Turn",
@@ -245,13 +245,16 @@
   "card_selection_unknown_card": "?",
   "card_selection_taken_card": "TAKEN",
   "card_selection_role_civilian": "Civilian",
-  "card_selection_role_undercover": "Undercover\\nAgent",
+  "card_selection_role_undercover": "Undercover\nAgent",
   "card_selection_role_mr_white": "Mr. White",
   "card_selection_no_word": "You don't know the word!",
   "card_selection_you_are": "You are",
   "card_selection_your_word": "Your word is:",
   "card_selection_mr_white_message": "You don't know the word!",
   "card_selection_mr_white_instruction": "Listen carefully and try to blend in",
+  "card_selection_selected": "Selected",
+  "card_selection_word_assigned": "Word Assigned",
+  "card_selection_your_card": "Your Card",
 
   "result_title": "Game Results",
   "result_civilians_win": "Civilians Win!",
@@ -280,7 +283,7 @@
   "result_main_menu": "Main Menu",
 
   "description_phase_tips_title": "Description Tips",
-  "description_phase_tips": "• Be vague but not too cryptic\\n• Don't directly mention your word\\n• Try to relate your word to common concepts\\n• Keep descriptions short and simple",
+  "description_phase_tips": "• Be vague but not too cryptic\n• Don't directly mention your word\n• Try to relate your word to common concepts\n• Keep descriptions short and simple",
   "description_phase_start_discussion": "Start Discussion",
 
   "discussion_phase_app_bar": "Undercover",
@@ -424,5 +427,9 @@
   "voting_header_title": "Group Elimination",
   "voting_header_subtitle": "Decide together who to eliminate",
   "voting_select_player_button": "Select a player to eliminate",
-  "voting_eliminate_player_button": "Eliminate {player}"
+  "voting_eliminate_player_button": "Eliminate {player}",
+  
+  "role_reveal_your_role": "YOUR ROLE",
+  "role_reveal_role_description": "Check your word below"
+}
 }

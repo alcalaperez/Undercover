@@ -252,6 +252,9 @@
   "card_selection_your_word": "Tu palabra es:",
   "card_selection_mr_white_message": "¡No conoces la palabra!",
   "card_selection_mr_white_instruction": "Escucha atentamente y trata de mezclarte",
+  "card_selection_selected": "Seleccionada",
+  "card_selection_word_assigned": "Palabra Asignada",
+  "card_selection_your_card": "Tu Carta",
 
   "result_title": "Resultados del Juego",
   "result_civilians_win": "¡Ganan los Civiles!",
@@ -280,7 +283,7 @@
   "result_main_menu": "Menú Principal",
 
   "description_phase_tips_title": "Consejos de Descripción",
-  "description_phase_tips": "• Sé vago pero no demasiado críptico\n• No menciones directamente tu palabra\n• Trata de relacionar tu palabra con conceptos comunes\n• Mantén las descripciones cortas y simples",
+  "description_phase_tips": "• Sé vago pero no demasiado críptico\\n• No menciones directamente tu palabra\\n• Trata de relacionar tu palabra con conceptos comunes\\n• Mantén las descripciones cortas y simples",
   "description_phase_start_discussion": "Iniciar Discusión",
 
   "discussion_phase_app_bar": "Encubierto",
@@ -446,5 +449,8 @@
   "voting_header_title": "Eliminación Grupal",
   "voting_header_subtitle": "Decidan juntos a quién eliminar",
   "voting_select_player_button": "Seleccionar un jugador para eliminar",
-  "voting_eliminate_player_button": "Eliminar {player}"
+  "voting_eliminate_player_button": "Eliminar {player}",
+  
+  "role_reveal_your_role": "TU ROL",
+  "role_reveal_role_description": "Revisa tu palabra abajo"
 }
