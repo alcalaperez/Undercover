@@ -112,7 +112,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Discuss each player\'s descriptions to identify the undercover agents.',
+              'Discuss each player\'s words to identify the undercover agents and Mr. White.',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
@@ -136,7 +136,7 @@ class _DiscussionPhaseScreenState extends State<DiscussionPhaseScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '• Ask each player about their word description\n• Look for inconsistencies in stories\n• Pay attention to who seems uncertain\n• Civilian words are related but different\n• Undercover words are similar but not the same',
+                    '• Ask each player about their word description\n• Look for inconsistencies in stories\n• Pay attention to who seems uncertain\n• Civilian words and Undercover words are related but not the same',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),

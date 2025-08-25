@@ -47,7 +47,7 @@ class AvatarSelector extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Container(
-          height: 160,
+          height: 90,
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             border: Border.all(

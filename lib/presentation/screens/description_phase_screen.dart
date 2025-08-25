@@ -384,7 +384,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
               ),
               const SizedBox(height: 8),
               Text(
-                'Each player will describe their word without being too obvious.',
+                'Each player will say a word related to the assigned word without being too obvious.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
@@ -408,7 +408,7 @@ class _DescriptionPhaseScreenState extends State<DescriptionPhaseScreen>
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '• Be vague but not too cryptic\n• Don\'t directly mention your word\n• Try to relate your word to common concepts\n• Keep descriptions short and simple',
+                      '• Be vague but not too cryptic\n• Don\'t directly mention your word\n• Try to relate your word to common concepts',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context).colorScheme.onSurface,
                       ),

@@ -9,6 +9,7 @@ class LocalizationService {
 
   Map<String, String> _localizedStrings = {};
   String _currentLanguage = 'en';
+  final List<VoidCallback> _listeners = [];
 
   static const List<String> supportedLanguages = ['en', 'es', 'fr', 'de', 'zh'];
   
@@ -24,6 +25,20 @@ class LocalizationService {
   List<String> get availableLanguages => supportedLanguages;
   Map<String, String> get languageDisplayNames => languageNames;
 
+  void addListener(VoidCallback listener) {
+    _listeners.add(listener);
+  }
+
+  void removeListener(VoidCallback listener) {
+    _listeners.remove(listener);
+  }
+
+  void _notifyListeners() {
+    for (final listener in _listeners) {
+      listener();
+    }
+  }
+
   Future<bool> load(String languageCode) async {
     try {
       final String jsonString = await rootBundle.loadString('assets/locales/$languageCode.json');
@@ -31,6 +46,7 @@ class LocalizationService {
       
       _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
       _currentLanguage = languageCode;
+      _notifyListeners();
       return true;
     } catch (e) {
       // If loading fails, try to load English as fallback

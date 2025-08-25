@@ -70,7 +70,7 @@
   "settings_music_volume": "Volumen de Música",
   "settings_effects_volume": "Volumen de Efectos",
 
-  "game_setup_title": "Configuración del Juego",
+  "game_setup_title": "Configuración Juego",
   "player_count": "Número de Jugadores",
   "undercover_count": "Encubiertos",
   "include_mr_white": "Incluir Sr. Blanco",
@@ -161,7 +161,7 @@
   "main_menu_subtitle": "El Juego de Fiesta Definitivo",
   "main_menu_new_game": "Nuevo Juego",
   "main_menu_tutorial": "Tutorial",
-  "main_menu_settings": "Configuración",
+  "main_menu_settings": "Idioma",
   "main_menu_version": "Versión 1.0.0",
   "main_menu_player_count": "4-20 Jugadores • Sin Conexión",
 
@@ -169,7 +169,7 @@
   "game_setup_add_player": "Agregar Jugador",
   "game_setup_player_count": "Jugadores ({count})",
   "game_setup_player_requirement": "Se requieren 4-20 jugadores",
-  "game_setup_configuration": "Configuración del Juego",
+  "game_setup_configuration": "Configuración Juego",
   "game_setup_roles": "Roles",
 
   "discussion_phase_title": "Fase de Discusión",
@@ -290,7 +290,7 @@
 
   "game_setup_enhanced_title": "Configuración del Juego",
   "game_setup_enhanced_players_tab": "Jugadores",
-  "game_setup_enhanced_settings_tab": "Configuración del Juego",
+  "game_setup_enhanced_settings_tab": "Configuración",
   "game_setup_enhanced_players_count": "Jugadores ({count})",
   "game_setup_enhanced_players_requirement": "Se requieren 4-20 jugadores",
   "game_setup_enhanced_shuffle_tooltip": "Barajar Orden",
@@ -305,7 +305,7 @@
   "game_setup_enhanced_cancel_button": "Cancelar",
   "game_setup_enhanced_update_button": "Actualizar",
   "game_setup_enhanced_add_button": "Agregar",
-  "game_setup_enhanced_configuration_title": "Configuración del Juego",
+  "game_setup_enhanced_configuration_title": "Configuración Juego",
   "game_setup_enhanced_roles_title": "Roles",
   "game_setup_enhanced_undercover_count": "Número de Encubiertos",
   "game_setup_enhanced_include_mr_white": "Incluir Sr. Blanco",
@@ -351,7 +351,7 @@
   "role_reveal_next_player": "Siguiente Jugador",
   "role_reveal_start_game": "Comenzar Juego",
 
-  "game_setup_simple_title": "Configuración del Juego",
+  "game_setup_simple_title": "Configuración Juego",
   "game_setup_players_tab_simple": "Jugadores",
   "game_setup_settings_tab_simple": "Configuración",
   "game_setup_add_player_dialog": "Agregar Jugador",
@@ -363,7 +363,7 @@
   "game_setup_players_count_simple": "Jugadores ({count})",
   "game_setup_add_player_tooltip_simple": "Agregar Jugador",
   "game_setup_players_requirement_footer": "Se requieren 4-20 jugadores • Mínimo 4 jugadores para comenzar",
-  "game_setup_game_settings_simple": "Configuración del Juego",
+  "game_setup_game_settings_simple": "Configuración Juego",
   "game_setup_undercover_count_simple": "Número de Encubiertos",
   "game_setup_include_mr_white_simple": "Incluir Sr. Blanco",
   "game_setup_mr_white_desc_simple": "El Sr. Blanco no conoce ninguna palabra",

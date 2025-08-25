@@ -18,12 +18,27 @@ class _MainMenuScreenState extends State<MainMenuScreen>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  final LocalizationService _localizationService = LocalizationService();
 
   @override
   void initState() {
     super.initState();
     _setupAnimations();
     _startAnimations();
+    LocalizationService().addListener(_onLanguageChange);
+  }
+
+  @override
+  void dispose() {
+    LocalizationService().removeListener(_onLanguageChange);
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _onLanguageChange() {
+    setState(() {
+      // Rebuild the widget when language changes
+    });
   }
 
   void _setupAnimations() {
@@ -51,12 +66,6 @@ class _MainMenuScreenState extends State<MainMenuScreen>
 
   void _startAnimations() {
     _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   void _navigateToGameSetup() {

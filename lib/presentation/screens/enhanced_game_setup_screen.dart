@@ -3,6 +3,7 @@ import '../../core/themes/app_theme.dart';
 import '../../core/constants/enums.dart';
 import '../../core/utils/routes.dart';
 import '../../core/utils/preferences_service.dart';
+import '../../core/utils/localization_service.dart';
 import '../../data/models/player.dart';
 import '../../data/models/game_settings.dart';
 import '../widgets/buttons/primary_button.dart';
@@ -136,6 +137,8 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
       _selectedAvatarIndex = _getNextAvailableAvatar();
     }
 
+    final localization = LocalizationService();
+
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -155,7 +158,9 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        isEdit ? 'Edit Player' : 'Add Player',
+                        isEdit 
+                            ? localization.translate('game_setup_enhanced_edit_dialog_title') 
+                            : localization.translate('game_setup_enhanced_add_dialog_title'),
                         style: AppTextStyles.h3,
                       ),
                       IconButton(
@@ -179,11 +184,11 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                                 child: TextField(
                                   controller: _nameController,
                                   decoration: InputDecoration(
-                                    labelText: 'Player Name',
-                                    hintText: 'Enter player name',
+                                    labelText: localization.translate('game_setup_enhanced_player_name_label'),
+                                    hintText: localization.translate('game_setup_enhanced_player_name_hint'),
                                     errorText: _nameController.text.isNotEmpty && 
                                                !_isNameValid(_nameController.text) 
-                                        ? _getNameError(_nameController.text)
+                                        ? _getNameLocalizedError(_nameController.text, localization)
                                         : null,
                                   ),
                                   autofocus: !isEdit,
@@ -194,7 +199,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                               IconButton(
                                 onPressed: () => _showQuickNameSuggestions(setDialogState),
                                 icon: const Icon(Icons.lightbulb_outline),
-                                tooltip: 'Quick Names',
+                                tooltip: localization.translate('game_setup_enhanced_quick_names_tooltip'),
                               ),
                             ],
                           ),
@@ -228,14 +233,16 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                     children: [
                       Expanded(
                         child: SecondaryButton(
-                          text: 'Cancel',
+                          text: localization.translate('game_setup_enhanced_cancel_button'),
                           onPressed: () => Navigator.of(context).pop(),
                         ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: PrimaryButton(
-                          text: isEdit ? 'Update' : 'Add',
+                          text: isEdit 
+                              ? localization.translate('game_setup_enhanced_update_button') 
+                              : localization.translate('game_setup_enhanced_add_button'),
                           onPressed: _nameController.text.isNotEmpty && 
                                     _isNameValid(_nameController.text)
                               ? () {
@@ -278,10 +285,10 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
     );
   }
 
-  String _getNameError(String name) {
-    if (name.trim().isEmpty) return 'Name cannot be empty';
+  String _getNameLocalizedError(String name, LocalizationService localization) {
+    if (name.trim().isEmpty) return localization.translate('game_setup_enhanced_name_empty_error');
     if (_players.any((p) => p.name.toLowerCase() == name.toLowerCase())) {
-      return 'Name already exists';
+      return localization.translate('game_setup_enhanced_name_exists_error');
     }
     return '';
   }
@@ -326,6 +333,8 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
   }
 
   Widget _buildPlayersTab() {
+    final localization = LocalizationService();
+    
     return Column(
       children: [
         // Header
@@ -338,11 +347,11 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Players (${_players.length})',
+                    localization.translate('game_setup_enhanced_players_count', placeholders: {'count': _players.length.toString()}),
                     style: AppTextStyles.h3,
                   ),
                   Text(
-                    '4-20 players required',
+                    localization.translate('game_setup_enhanced_players_requirement'),
                     style: AppTextStyles.caption.copyWith(
                       color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                     ),
@@ -354,14 +363,14 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                   IconButtonCustom(
                     icon: Icons.shuffle,
                     onPressed: _shufflePlayers,
-                    tooltip: 'Shuffle Order',
+                    tooltip: localization.translate('game_setup_enhanced_shuffle_tooltip'),
                     size: 40,
                   ),
                   const SizedBox(width: 8),
                   IconButtonCustom(
                     icon: Icons.add,
                     onPressed: _players.length < 20 ? () => _showPlayerDialog() : null,
-                    tooltip: 'Add Player',
+                    tooltip: localization.translate('game_setup_enhanced_add_player_tooltip'),
                   ),
                 ],
               ),
@@ -383,14 +392,14 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                       icon: const Icon(Icons.edit_outlined),
                       color: AppColors.primary,
                       onPressed: () => _editPlayer(index),
-                      tooltip: 'Edit Player',
+                      tooltip: localization.translate('game_setup_enhanced_edit_player_tooltip'),
                     ),
                     if (_players.length > 4)
                       IconButton(
                         icon: const Icon(Icons.remove_circle_outline),
                         color: AppColors.danger,
                         onPressed: () => _removePlayer(index),
-                        tooltip: 'Remove Player',
+                        tooltip: localization.translate('game_setup_enhanced_remove_player_tooltip'),
                       ),
                   ],
                 ),
@@ -409,13 +418,15 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
   }
 
   Widget _buildSettingsTab() {
+    final localization = LocalizationService();
+    
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Game Configuration',
+            localization.translate('game_setup_enhanced_configuration_title'),
             style: AppTextStyles.h3,
           ),
           const SizedBox(height: 24),
@@ -428,7 +439,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Roles',
+                    localization.translate('game_setup_enhanced_roles_title'),
                     style: AppTextStyles.labelLarge,
                   ),
                   const SizedBox(height: 16),
@@ -438,7 +449,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Number of Undercovers',
+                        localization.translate('game_setup_enhanced_undercover_count'),
                         style: AppTextStyles.bodyMedium,
                       ),
                       DropdownButton<int>(
@@ -464,8 +475,8 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                   
                   // Mr. White Toggle
                   SwitchListTile(
-                    title: const Text('Include Mr. White'),
-                    subtitle: const Text('Mr. White doesn\'t know any word'),
+                    title: Text(localization.translate('game_setup_enhanced_include_mr_white')),
+                    subtitle: Text(localization.translate('game_setup_enhanced_mr_white_description')),
                     value: _settings.includeMrWhite,
                     onChanged: (value) {
                       setState(() {
@@ -478,8 +489,8 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                   // Mr. White First Draw Setting
                   if (_settings.includeMrWhite)
                     SwitchListTile(
-                      title: const Text('Prevent Mr. White First'),
-                      subtitle: const Text('Mr. White will not go first in word reveal'),
+                      title: Text(localization.translate('game_setup_enhanced_prevent_mr_white_first')),
+                      subtitle: Text(localization.translate('game_setup_enhanced_mr_white_first_description')),
                       value: _settings.mrWhiteFirstDraw,
                       onChanged: (value) {
                         setState(() {
@@ -503,7 +514,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Timer Settings',
+                    localization.translate('game_setup_enhanced_timer_settings'),
                     style: AppTextStyles.labelLarge,
                   ),
                   const SizedBox(height: 16),
@@ -511,7 +522,9 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                   Column(
                     children: [30, 60, 90, 0].map((seconds) {
                       return RadioListTile<int>(
-                        title: Text(seconds == 0 ? 'No Timer' : '${seconds}s per description'),
+                        title: Text(seconds == 0 
+                            ? localization.translate('game_setup_enhanced_no_timer') 
+                            : localization.translate('game_setup_enhanced_timer_seconds', placeholders: {'seconds': seconds.toString()})),
                         value: seconds,
                         groupValue: _settings.descriptionTimeLimit,
                         onChanged: (value) {
@@ -541,7 +554,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Word Configuration',
+                    localization.translate('game_setup_enhanced_word_configuration'),
                     style: AppTextStyles.labelLarge,
                   ),
                   const SizedBox(height: 16),
@@ -551,7 +564,7 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Difficulty Level',
+                        localization.translate('game_setup_enhanced_difficulty_level'),
                         style: AppTextStyles.bodyMedium,
                       ),
                       DropdownButton<DifficultyLevel>(
@@ -603,14 +616,22 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
       );
     }
 
+    final localization = LocalizationService();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Game Setup'),
+        title: Text(localization.translate('game_setup_enhanced_title')),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(icon: Icon(Icons.people), text: 'Players'),
-            Tab(icon: Icon(Icons.settings), text: 'Game Settings'),
+          tabs: [
+            Tab(
+              icon: const Icon(Icons.people), 
+              text: localization.translate('game_setup_enhanced_players_tab'),
+            ),
+            Tab(
+              icon: const Icon(Icons.settings), 
+              text: localization.translate('game_setup_enhanced_settings_tab'),
+            ),
           ],
         ),
       ),
@@ -637,16 +658,17 @@ class _EnhancedGameSetupScreenState extends State<EnhancedGameSetupScreen>
           child: Row(
             children: [
               Expanded(
+                flex: 7,
                 child: SecondaryButton(
-                  text: 'Cancel',
+                  text: localization.translate('game_setup_enhanced_cancel_button'),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                flex: 2,
+                flex: 10,
                 child: PrimaryButton(
-                  text: 'Start Game',
+                  text: localization.translate('game_setup_enhanced_start_game'),
                   isLoading: _isStartingGame,
                   onPressed: _players.length >= 4 ? _startGame : null,
                 ),
