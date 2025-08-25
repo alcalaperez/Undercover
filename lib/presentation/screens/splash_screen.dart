@@ -127,18 +127,10 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: const Color(0xFF6366F1), // Match native splash background
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.primary,
-              AppColors.primary.withOpacity(0.8),
-              AppColors.secondary.withOpacity(0.3),
-            ],
-          ),
+        decoration: const BoxDecoration(
+          color: Color(0xFF6366F1), // Solid color matching native splash
         ),
         child: Center(
           child: Column(
@@ -169,7 +161,7 @@ class _SplashScreenState extends State<SplashScreen>
                         child: const Icon(
                           Icons.theater_comedy,
                           size: 60,
-                          color: AppColors.primary,
+                          color: Color(0xFF6366F1),
                         ),
                       ),
                     ),
