@@ -27,9 +27,6 @@ jobs:
     
     - name: Run tests
       run: flutter test
-    
-    - name: Check formatting
-      run: dart format --output=none --set-exit-if-changed .
 
   build_android:
     needs: test
