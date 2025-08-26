@@ -25,6 +25,16 @@
 
 Perfect for parties, family gatherings, or team building events - this offline multiplayer game supports 4-20 players in an engaging battle of wit and deception.
 
+## 📸 Screenshots
+
+<div align="center">
+  
+<img src="https://i.imgur.com/YI8kF05.png" width="30%" > <img src="https://i.imgur.com/aH29BrU.png" width="30%" >  <img src="https://i.imgur.com/iUCvize.png" width="30%" >
+
+ <img src="https://i.imgur.com/hrDdVoa.png" width="30%" > <img src="https://i.imgur.com/y8quXm1.png" width="30%" > <img src="https://i.imgur.com/vRkEpqr.png" width="30%" >
+
+</div>
+
 ## ✨ Key Features
 
 ### 🎮 **Core Gameplay**
@@ -125,16 +135,6 @@ flutter build ios --release
 - **Civilians win** by eliminating all undercover agents and Mr. White
 - **Undercover agents win** by surviving until only 1 civilian remains
 - **Mr. White wins** by correctly guessing the civilian word when eliminated
-
-## 📸 Screenshots
-
-<div align="center">
-  
-<img src="https://i.imgur.com/YI8kF05.png" width="30%" > <img src="https://i.imgur.com/aH29BrU.png" width="30%" >  <img src="https://i.imgur.com/iUCvize.png" width="30%" >
-
- <img src="https://i.imgur.com/hrDdVoa.png" width="30%" > <img src="https://i.imgur.com/y8quXm1.png" width="30%" > <img src="https://i.imgur.com/vRkEpqr.png" width="30%" >
-
-</div>
 
 ## 🧪 Testing
 
